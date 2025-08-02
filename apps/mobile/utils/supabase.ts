@@ -1,6 +1,6 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createClient } from "@supabase/supabase-js";
-import "react-native-url-polyfill/auto";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createClient } from '@supabase/supabase-js';
+import 'react-native-url-polyfill/auto';
 
 // These variables are safe to expose in your Expo app since Supabase has Row Level Security enabled in the Database.
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL as string;
