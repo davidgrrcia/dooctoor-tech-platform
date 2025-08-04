@@ -1,6 +1,6 @@
 # Backend Package
 
-This package contains the Convex backend configuration and functions for the Velvo application.
+This package contains the Convex backend configuration and functions for the application.
 
 ## Getting Started
 
