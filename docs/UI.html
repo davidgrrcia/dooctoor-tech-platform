@@ -81,12 +81,12 @@
      
      .brand-primary { background: #FD8006; }
      .brand-secondary { background: #FF6B35; }
-     .success-color { background: #10B981; }
-     .warning-color { background: #F59E0B; }
-     .info-color { background: #3B82F6; }
+     .success-color { background: #455581; }
+     .warning-color { background: #CB4E8B; }
+     .info-color { background: #455581; }
      .neutral-warm { background: #F3F4F6; }
-     .accent-blue { background: #1E40AF; }
-     .accent-teal { background: #0D9488; }
+     .accent-blue { background: #455581; }
+     .accent-teal { background: #855798; }
 
       .card {
         background: white;
@@ -94,6 +94,11 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
         border: 1px solid rgba(0, 0, 0, 0.04);
+      }
+      
+      .card-highlight {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(249, 250, 251, 1) 100%);
+        border: 1px solid rgba(253, 128, 6, 0.1);
       }
 
       .card:hover {
@@ -271,11 +276,13 @@
                  </p>
               </div>
               <div
-                class="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center"
+                class="w-12 h-12 rounded-full flex items-center justify-center"
+                style="background: #FD8006"
               >
-                <i class="fas fa-bell text-gray-600"></i>
+                <i class="fas fa-bell text-white"></i>
                 <div
-                  class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full pulse-dot"
+                  class="absolute -top-1 -right-1 w-3 h-3 rounded-full pulse-dot"
+                  style="background-color: #CB4E8B"
                 ></div>
               </div>
             </div>
@@ -315,9 +322,10 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-12 h-12 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-4"
+                        class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
+                        style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                       >
-                        <i class="fas fa-user text-gray-600"></i>
+                        <i class="fas fa-user" style="color: #CB4E8B"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -328,7 +336,7 @@
                          </p>
                       </div>
                     </div>
-                    <div class="w-3 h-3 bg-emerald-400 rounded-full"></div>
+                    <div class="w-3 h-3 rounded-full" style="background-color: #455581"></div>
                   </div>
                 </div>
 
@@ -336,9 +344,10 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-12 h-12 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-4"
+                        class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
+                        style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                       >
-                        <i class="fas fa-user text-gray-600"></i>
+                        <i class="fas fa-user" style="color: #CB4E8B"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -349,7 +358,7 @@
                          </p>
                       </div>
                     </div>
-                    <div class="w-3 h-3 bg-amber-400 rounded-full"></div>
+                    <div class="w-3 h-3 rounded-full" style="background-color: #CB4E8B"></div>
                   </div>
                 </div>
 
@@ -357,9 +366,10 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-12 h-12 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-4"
+                        class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
+                        style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                       >
-                        <i class="fas fa-child text-gray-600"></i>
+                        <i class="fas fa-child" style="color: #CB4E8B"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -370,7 +380,7 @@
                          </p>
                       </div>
                     </div>
-                    <div class="w-3 h-3 bg-blue-400 rounded-full"></div>
+                    <div class="w-3 h-3 rounded-full" style="background-color: #455581"></div>
                   </div>
                 </div>
               </div>
@@ -384,18 +394,20 @@
               <div class="grid grid-cols-2 gap-4">
                 <div class="card p-4 text-center">
                   <div
-                    class="w-12 h-12 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                    class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
+                    style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                   >
-                    <i class="fas fa-plus text-emerald-600"></i>
+                    <i class="fas fa-plus" style="color: #455581"></i>
                   </div>
                                      <h3 class="font-semibold text-black text-sm">Añadir Registro</h3>
                 </div>
 
                 <div class="card p-4 text-center">
                   <div
-                    class="w-12 h-12 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                    class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
+                    style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                   >
-                    <i class="fas fa-calendar text-blue-600"></i>
+                    <i class="fas fa-calendar" style="color: #455581"></i>
                   </div>
                                      <h3 class="font-semibold text-black text-sm">
                      Programar Cita
@@ -404,18 +416,20 @@
 
                 <div class="card p-4 text-center">
                   <div
-                    class="w-12 h-12 bg-gradient-to-br from-amber-50 to-amber-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                    class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
+                    style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                   >
-                    <i class="fas fa-pills text-amber-600"></i>
+                    <i class="fas fa-pills" style="color: #CB4E8B"></i>
                   </div>
                                      <h3 class="font-semibold text-black text-sm">Medicamentos</h3>
                 </div>
 
                 <div class="card p-4 text-center">
                   <div
-                    class="w-12 h-12 bg-gradient-to-br from-violet-50 to-violet-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                    class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
+                    style="background: linear-gradient(135deg, rgba(133, 87, 152, 0.1) 0%, rgba(133, 87, 152, 0.2) 100%)"
                   >
-                    <i class="fas fa-share text-violet-600"></i>
+                    <i class="fas fa-share" style="color: #855798"></i>
                   </div>
                                      <h3 class="font-semibold text-black text-sm">Compartir Info</h3>
                 </div>
@@ -465,9 +479,10 @@
                 </div>
               </div>
               <button
-                class="w-10 h-10 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center"
+                class="w-10 h-10 rounded-full flex items-center justify-center"
+                style="background: #FD8006"
               >
-                <i class="fas fa-plus text-gray-600"></i>
+                <i class="fas fa-plus text-white"></i>
               </button>
             </div>
 
@@ -516,9 +531,10 @@
               <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center">
                   <div
-                    class="w-12 h-12 bg-gradient-to-br from-red-50 to-red-100 rounded-full flex items-center justify-center mr-4"
+                    class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
+                    style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                   >
-                    <i class="fas fa-file-medical text-red-600"></i>
+                    <i class="fas fa-file-medical" style="color: #CB4E8B"></i>
                   </div>
                   <div>
                     <h3 class="font-semibold text-black text-sm">
@@ -533,11 +549,13 @@
               </div>
               <div class="flex space-x-2">
                 <span
-                  class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full"
+                  class="px-2 py-1 bg-gray-100 text-xs rounded-full"
+                  style="color: #455581"
                   >Normal</span
                 >
                 <span
-                  class="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full"
+                  class="px-2 py-1 text-xs rounded-full"
+                  style="background: rgba(69, 85, 129, 0.1); color: #455581"
                   >Reporte de Lab</span
                 >
               </div>
@@ -547,9 +565,10 @@
               <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center">
                   <div
-                    class="w-12 h-12 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center mr-4"
+                    class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
+                    style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                   >
-                    <i class="fas fa-x-ray text-blue-600"></i>
+                    <i class="fas fa-x-ray" style="color: #455581"></i>
                   </div>
                   <div>
                     <h3 class="font-semibold text-black text-sm">
@@ -564,11 +583,13 @@
               </div>
               <div class="flex space-x-2">
                 <span
-                  class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full"
+                  class="px-2 py-1 bg-gray-100 text-xs rounded-full"
+                  style="color: #455581"
                   >Normal</span
                 >
                 <span
-                  class="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full"
+                  class="px-2 py-1 bg-gray-100 text-xs rounded-full"
+                  style="color: #455581"
                   >Imagen</span
                 >
               </div>
@@ -578,9 +599,10 @@
               <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center">
                   <div
-                    class="w-12 h-12 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-4"
+                    class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
+                    style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                   >
-                    <i class="fas fa-pills text-gray-600"></i>
+                    <i class="fas fa-pills" style="color: #CB4E8B"></i>
                   </div>
                   <div>
                     <h3 class="font-semibold text-black text-sm">
@@ -595,11 +617,13 @@
               </div>
               <div class="flex space-x-2">
                 <span
-                  class="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full"
+                  class="px-2 py-1 bg-gray-100 text-xs rounded-full"
+                  style="color: #CB4E8B"
                   >Activo</span
                 >
                 <span
-                  class="px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full"
+                  class="px-2 py-1 text-xs rounded-full"
+                  style="background: rgba(203, 78, 139, 0.1); color: #CB4E8B"
                   >Medicamento</span
                 >
               </div>
@@ -609,9 +633,10 @@
               <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center">
                   <div
-                    class="w-12 h-12 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-4"
+                    class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
+                    style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                   >
-                    <i class="fas fa-syringe text-gray-600"></i>
+                    <i class="fas fa-syringe" style="color: #455581"></i>
                   </div>
                   <div>
                     <h3 class="font-semibold text-black text-sm">
@@ -626,11 +651,13 @@
               </div>
               <div class="flex space-x-2">
                 <span
-                  class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full"
+                  class="px-2 py-1 bg-gray-100 text-xs rounded-full"
+                  style="color: #455581"
                   >Completado</span
                 >
                 <span
-                  class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full"
+                  class="px-2 py-1 bg-gray-100 text-xs rounded-full"
+                  style="color: #455581"
                   >Inmunización</span
                 >
               </div>
@@ -682,9 +709,10 @@
                 </div>
               </div>
               <button
-                class="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center"
+                class="w-10 h-10 rounded-full flex items-center justify-center"
+                style="background: #FD8006"
               >
-                <i class="fas fa-edit text-gray-600"></i>
+                <i class="fas fa-edit text-white"></i>
               </button>
             </div>
 
@@ -692,16 +720,17 @@
             <div class="card p-6">
               <div class="flex items-center mb-4">
                 <div
-                  class="w-16 h-16 bg-gradient-to-br from-pink-50 to-pink-100 rounded-full flex items-center justify-center mr-4"
+                  class="w-16 h-16 rounded-full flex items-center justify-center mr-4"
+                  style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                 >
-                  <i class="fas fa-child text-pink-600 text-2xl"></i>
+                  <i class="fas fa-child text-2xl" style="color: #CB4E8B"></i>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center mb-2">
                     <h3 class="font-semibold text-black text-lg mr-2">
                       Emma Johnson
                     </h3>
-                    <div class="w-3 h-3 bg-emerald-400 rounded-full"></div>
+                    <div class="w-3 h-3 rounded-full" style="background-color: #455581"></div>
                   </div>
                   <p class="text-gray-600 text-sm">Nacida: 15 de Marzo, 2016</p>
                   <p class="text-gray-600 text-sm">Tipo de Sangre: O+</p>
@@ -738,9 +767,10 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-10 h-10 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center mr-3"
+                        class="w-10 h-10 rounded-full flex items-center justify-center mr-3"
+                        style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                       >
-                        <i class="fas fa-check text-emerald-600"></i>
+                        <i class="fas fa-check" style="color: #455581"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -758,9 +788,10 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-10 h-10 bg-gradient-to-br from-amber-50 to-amber-100 rounded-full flex items-center justify-center mr-3"
+                        class="w-10 h-10 rounded-full flex items-center justify-center mr-3"
+                        style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                       >
-                        <i class="fas fa-exclamation text-amber-600"></i>
+                        <i class="fas fa-exclamation" style="color: #CB4E8B"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -780,7 +811,7 @@
                       <div
                         class="w-10 h-10 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center mr-3"
                       >
-                        <i class="fas fa-calendar text-blue-600"></i>
+                        <i class="fas fa-calendar" style="color: #455581"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -808,9 +839,10 @@
                 <div class="card interactive-card p-4">
                   <div class="flex items-center">
                     <div
-                      class="w-10 h-10 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center mr-3"
+                      class="w-10 h-10 rounded-full flex items-center justify-center mr-3"
+                      style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                     >
-                      <i class="fas fa-syringe text-emerald-600"></i>
+                      <i class="fas fa-syringe" style="color: #455581"></i>
                     </div>
                     <div>
                       <h3 class="font-semibold text-black text-sm">
@@ -826,7 +858,7 @@
                     <div
                       class="w-10 h-10 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center mr-3"
                     >
-                      <i class="fas fa-stethoscope text-blue-600"></i>
+                      <i class="fas fa-stethoscope" style="color: #455581"></i>
                     </div>
                     <div>
                       <h3 class="font-semibold text-black text-sm">
@@ -882,9 +914,10 @@
                 </div>
               </div>
               <button
-                class="w-10 h-10 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center"
+                class="w-10 h-10 rounded-full flex items-center justify-center"
+                style="background: #FD8006"
               >
-                <i class="fas fa-download text-gray-600"></i>
+                <i class="fas fa-download text-white"></i>
               </button>
             </div>
 
@@ -920,8 +953,8 @@
                 <p class="text-gray-600 text-sm">Estado de salud excelente</p>
                 <div class="w-full bg-gray-200 rounded-full h-2 mt-4">
                   <div
-                    class="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full"
-                    style="width: 87%"
+                    class="h-2 rounded-full"
+                    style="width: 87%; background: linear-gradient(to right, #455581, #855798)"
                   ></div>
                 </div>
               </div>
@@ -949,40 +982,40 @@
               <div class="space-y-4">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center">
-                    <div class="w-3 h-3 bg-emerald-400 rounded-full mr-3"></div>
+                    <div class="w-3 h-3 rounded-full mr-3" style="background-color: #455581"></div>
                     <span class="text-black text-sm">Vacunaciones</span>
                   </div>
                   <div class="flex items-center">
-                    <span class="text-emerald-600 text-sm font-medium mr-2"
-                      >100%</span
+                    <span class="text-sm font-medium mr-2"
+                      style="color: #455581">100%</span
                     >
-                    <i class="fas fa-arrow-up text-emerald-600 text-xs"></i>
+                    <i class="fas fa-arrow-up text-xs" style="color: #455581"></i>
                   </div>
                 </div>
 
                 <div class="flex items-center justify-between">
                   <div class="flex items-center">
-                    <div class="w-3 h-3 bg-blue-400 rounded-full mr-3"></div>
+                    <div class="w-3 h-3 rounded-full mr-3" style="background-color: #455581"></div>
                     <span class="text-black text-sm">Regular Chequeos</span>
                   </div>
                   <div class="flex items-center">
-                    <span class="text-blue-600 text-sm font-medium mr-2"
-                      >75%</span
+                    <span class="text-sm font-medium mr-2"
+                      style="color: #455581">75%</span
                     >
-                    <i class="fas fa-arrow-up text-blue-600 text-xs"></i>
+                    <i class="fas fa-arrow-up text-xs" style="color: #455581"></i>
                   </div>
                 </div>
 
                 <div class="flex items-center justify-between">
                   <div class="flex items-center">
-                    <div class="w-3 h-3 bg-amber-400 rounded-full mr-3"></div>
+                    <div class="w-3 h-3 rounded-full mr-3" style="background-color: #CB4E8B"></div>
                     <span class="text-black text-sm">Visitas de Emergencia</span>
                   </div>
                   <div class="flex items-center">
-                    <span class="text-emerald-600 text-sm font-medium mr-2"
-                      >-50%</span
+                    <span class="text-sm font-medium mr-2"
+                      style="color: #455581">-50%</span
                     >
-                    <i class="fas fa-arrow-down text-emerald-600 text-xs"></i>
+                    <i class="fas fa-arrow-down text-xs" style="color: #455581"></i>
                   </div>
                 </div>
               </div>
@@ -996,9 +1029,10 @@
               <div class="space-y-4">
                 <div class="flex items-center">
                   <div
-                    class="w-8 h-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-3"
+                    class="w-8 h-8 rounded-full flex items-center justify-center mr-3"
+                    style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                   >
-                    <i class="fas fa-plus text-gray-600 text-xs"></i>
+                    <i class="fas fa-plus text-xs" style="color: #455581"></i>
                   </div>
                   <div class="flex-1">
                     <p class="text-black text-sm">
@@ -1010,9 +1044,10 @@
 
                 <div class="flex items-center">
                   <div
-                    class="w-8 h-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-3"
+                    class="w-8 h-8 rounded-full flex items-center justify-center mr-3"
+                    style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                   >
-                    <i class="fas fa-calendar text-gray-600 text-xs"></i>
+                    <i class="fas fa-calendar text-xs" style="color: #455581"></i>
                   </div>
                   <div class="flex-1">
                     <p class="text-black text-sm">Se programó chequeo para Mike</p>
@@ -1022,9 +1057,10 @@
 
                 <div class="flex items-center">
                   <div
-                    class="w-8 h-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-3"
+                    class="w-8 h-8 rounded-full flex items-center justify-center mr-3"
+                    style="background: linear-gradient(135deg, rgba(133, 87, 152, 0.1) 0%, rgba(133, 87, 152, 0.2) 100%)"
                   >
-                    <i class="fas fa-share text-gray-600 text-xs"></i>
+                    <i class="fas fa-share text-xs" style="color: #855798"></i>
                   </div>
                   <div class="flex-1">
                     <p class="text-black text-sm">
@@ -1087,9 +1123,10 @@
             <div class="card interactive-card p-4">
               <div class="flex items-center">
                 <div
-                  class="w-16 h-16 bg-gradient-to-br from-orange-50 to-orange-100 rounded-full flex items-center justify-center mr-4"
+                  class="w-16 h-16 rounded-full flex items-center justify-center mr-4"
+                  style="background: linear-gradient(135deg, rgba(203, 78, 139, 0.1) 0%, rgba(203, 78, 139, 0.2) 100%)"
                 >
-                  <i class="fas fa-user text-orange-600 text-2xl"></i>
+                  <i class="fas fa-user text-2xl" style="color: #CB4E8B"></i>
                 </div>
                 <div class="flex-1">
                   <h3 class="font-semibold text-black text-lg">
@@ -1115,9 +1152,9 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-10 h-10 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center mr-3"
+                        class="w-10 h-10 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-3"
                       >
-                        <i class="fas fa-users text-emerald-600"></i>
+                        <i class="fas fa-users" style="color: #CB4E8B"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -1136,9 +1173,9 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-10 h-10 bg-gradient-to-br from-violet-50 to-violet-100 rounded-full flex items-center justify-center mr-3"
+                        class="w-10 h-10 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-3"
                       >
-                        <i class="fas fa-share-alt text-violet-600"></i>
+                        <i class="fas fa-share-alt" style="color: #855798"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -1165,9 +1202,10 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-10 h-10 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center mr-3"
+                        class="w-10 h-10 rounded-full flex items-center justify-center mr-3"
+                        style="background: linear-gradient(135deg, rgba(69, 85, 129, 0.1) 0%, rgba(69, 85, 129, 0.2) 100%)"
                       >
-                        <i class="fas fa-lock text-blue-600"></i>
+                        <i class="fas fa-lock" style="color: #455581"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -1219,9 +1257,9 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
-                        class="w-10 h-10 bg-gradient-to-br from-amber-50 to-amber-100 rounded-full flex items-center justify-center mr-3"
+                        class="w-10 h-10 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center mr-3"
                       >
-                        <i class="fas fa-bell text-amber-600"></i>
+                        <i class="fas fa-bell" style="color: #CB4E8B"></i>
                       </div>
                       <div>
                         <h3 class="font-semibold text-black text-sm">
@@ -1351,24 +1389,28 @@
             <span class="text-sm text-gray-600">Brand Primary (#FD8006)</span>
           </div>
           <div class="flex items-center">
-            <div class="w-8 h-8 rounded-full mr-2 bg-emerald-500"></div>
-            <span class="text-sm text-gray-600">Success/Health (#10B981)</span>
+            <div class="w-8 h-8 rounded-full mr-2" style="background-color: #455581"></div>
+            <span class="text-sm text-gray-600">Medical/Info (#455581)</span>
           </div>
           <div class="flex items-center">
-            <div class="w-8 h-8 rounded-full mr-2 bg-blue-500"></div>
-            <span class="text-sm text-gray-600">Medical/Info (#3B82F6)</span>
+            <div class="w-8 h-8 rounded-full mr-2" style="background-color: #455581"></div>
+            <span class="text-sm text-gray-600">Medical/Info (#455581)</span>
           </div>
           <div class="flex items-center">
-            <div class="w-8 h-8 rounded-full mr-2 bg-amber-500"></div>
-            <span class="text-sm text-gray-600">Warning/Active (#F59E0B)</span>
+            <div class="w-8 h-8 rounded-full mr-2" style="background-color: #CB4E8B"></div>
+            <span class="text-sm text-gray-600">Alerts/Family (#CB4E8B)</span>
           </div>
           <div class="flex items-center">
-            <div class="w-8 h-8 rounded-full mr-2 bg-violet-500"></div>
-            <span class="text-sm text-gray-600">Share/Social (#8B5CF6)</span>
+            <div class="w-8 h-8 rounded-full mr-2" style="background-color: #855798"></div>
+            <span class="text-sm text-gray-600">Share/Social (#855798)</span>
           </div>
           <div class="flex items-center">
-            <div class="w-8 h-8 rounded-full mr-2 bg-pink-500"></div>
-            <span class="text-sm text-gray-600">Family/Personal (#EC4899)</span>
+            <div class="w-8 h-8 rounded-full mr-2" style="background-color: #CB4E8B"></div>
+            <span class="text-sm text-gray-600">Family/Personal (#CB4E8B)</span>
+          </div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 rounded-full mr-2" style="background-color: #455581"></div>
+            <span class="text-sm text-gray-600">Medical/Security (#455581)</span>
           </div>
           <div class="flex items-center">
             <div
