@@ -25,7 +25,7 @@ export default defineSchema({
     contactName: v.string(),
     contactEmail: v.string(),
     contactPhone: v.string(),
-  }),
+  }).index("by_organization", ["organizationId"]),
 
   professionals: defineTable({
     centerId: v.id("centers"),
@@ -33,28 +33,14 @@ export default defineSchema({
     surname: v.string(),
     licenseNumber: v.string(),
     email: v.string(),
-    mobile: v.string(),
-    doctorInternalId: v.string(),
-  }),
+    phone: v.string(),
+    doctorInternalId: v.string(), // What is referenced to?
+  }).index("by_center", ["centerId"]),
 
   // -------------------------
-  // B. Customer & Person
+  // B. Customer & Person (Patients)
   // -------------------------
-  customers: defineTable({
-    name: v.string(),
-    surname1: v.string(),
-    surname2: v.string(),
-    documentType: v.string(),
-    documentNumber: v.string(),
-    email: v.string(),
-    address: v.string(),
-    postalCode: v.string(),
-    city: v.string(),
-    country: v.string(),
-  }),
-
   persons: defineTable({
-    customerId: v.id("customers"),
     photo: v.string(),
     nickname: v.string(),
     name: v.string(),
@@ -68,7 +54,30 @@ export default defineSchema({
     documentNumber: v.string(),
   }),
 
+  customers: defineTable({
+    personId: v.id("persons"), // The person who is the payer
+    name: v.string(),
+    surname1: v.string(),
+    surname2: v.string(),
+    documentType: v.string(), // DNI, NIE, etc. ?
+    documentNumber: v.string(),
+    email: v.string(),
+    address: v.string(),
+    postalCode: v.string(),
+    city: v.string(),
+    country: v.string(),
+  })
+    .index("by_email", ["email"])
+    .index("by_document", ["documentType", "documentNumber"]),
+
+  customerPersons: defineTable({
+    customerId: v.id("customers"), // The payer
+    personId: v.id("persons"), // The dependent or covered person
+    relationship: v.string(), // e.g., "son", "daughter", "wife", "husband", "parent", "other"
+  }),
+
   personContacts: defineTable({
+    // is this needed?
     personId: v.id("persons"),
     email: v.string(),
     mobilePhone: v.string(),
@@ -78,7 +87,7 @@ export default defineSchema({
     country: v.string(),
   }),
 
-  emergencyContacts: defineTable({
+  personEmergencyContacts: defineTable({
     personId: v.id("persons"),
     priorityOrder: v.number(),
     name: v.string(),
@@ -88,7 +97,7 @@ export default defineSchema({
     relationship: v.string(),
   }),
 
-  insurances: defineTable({
+  personInsurances: defineTable({
     personId: v.id("persons"),
     company: v.string(),
     cardNumber: v.string(),
@@ -234,68 +243,69 @@ export default defineSchema({
     vaccineId: v.id("vaccines"),
   }),
 
+  // KEEP COMMENTED FOR NOW
   // -------------------------
   // H. Child-Specific Data
   // -------------------------
-  birthDetails: defineTable({
-    personId: v.id("persons"),
-    birthCenter: v.string(),
-    birthWeight: v.string(),
-    birthHeight: v.string(),
-    birthCephalicPerimeter: v.string(),
-    incubator: v.boolean(),
-    apgar1: v.number(),
-    apgar5: v.number(),
-    resuscitation: v.boolean(),
-    generalExploration: v.string(),
-    preventiveVitK: v.boolean(),
-    preventiveOcularProphylaxis: v.boolean(),
-    metabolicScreening: v.string(),
-    hearingScreening: v.string(),
-  }),
+  // birthDetails: defineTable({
+  //   personId: v.id("persons"),
+  //   birthCenter: v.string(),
+  //   birthWeight: v.string(),
+  //   birthHeight: v.string(),
+  //   birthCephalicPerimeter: v.string(),
+  //   incubator: v.boolean(),
+  //   apgar1: v.number(),
+  //   apgar5: v.number(),
+  //   resuscitation: v.boolean(),
+  //   generalExploration: v.string(),
+  //   preventiveVitK: v.boolean(),
+  //   preventiveOcularProphylaxis: v.boolean(),
+  //   metabolicScreening: v.string(),
+  //   hearingScreening: v.string(),
+  // }),
 
-  developmentMilestones: defineTable({
-    personId: v.id("persons"),
-    milestoneTypeId: v.id("milestoneTypes"),
-    month: v.number(),
-    year: v.number(),
-  }),
+  // developmentMilestones: defineTable({
+  //   personId: v.id("persons"),
+  //   milestoneTypeId: v.id("milestoneTypes"),
+  //   month: v.number(),
+  //   year: v.number(),
+  // }),
 
-  milestoneTypes: defineTable({
-    name: v.string(),
-  }),
+  // milestoneTypes: defineTable({
+  //   name: v.string(),
+  // }),
 
-  feedings: defineTable({
-    personId: v.id("persons"),
-    foodTypeId: v.id("foodTypes"),
-    month: v.number(),
-    year: v.number(),
-  }),
+  // feedings: defineTable({
+  //   personId: v.id("persons"),
+  //   foodTypeId: v.id("foodTypes"),
+  //   month: v.number(),
+  //   year: v.number(),
+  // }),
 
-  foodTypes: defineTable({
-    name: v.string(),
-  }),
+  // foodTypes: defineTable({
+  //   name: v.string(),
+  // }),
 
-  dentitions: defineTable({
-    personId: v.id("persons"),
-    toothName: v.string(),
-    appearedMonth: v.number(),
-    appearedYear: v.number(),
-    fellMonth: v.number(),
-    fellYear: v.number(),
-  }),
+  // dentitions: defineTable({
+  //   personId: v.id("persons"),
+  //   toothName: v.string(),
+  //   appearedMonth: v.number(),
+  //   appearedYear: v.number(),
+  //   fellMonth: v.number(),
+  //   fellYear: v.number(),
+  // }),
 
   // -------------------------
   // I. Alerts
   // -------------------------
-  alerts: defineTable({
-    linkedEntityType: v.string(), // e.g., "history", "medicine", "vaccine"
-    linkedEntityId: v.string(),
-    message: v.string(),
-    status: v.string(),
-    comments: v.string(),
-    createdBy: v.id("systemUsers"),
-  }),
+  // alerts: defineTable({
+  //   linkedEntityType: v.string(), // e.g., "history", "medicine", "vaccine"
+  //   linkedEntityId: v.string(),
+  //   message: v.string(),
+  //   status: v.string(),
+  //   comments: v.string(),
+  //   createdBy: v.id("systemUsers"),
+  // }),
 
   // -------------------------
   // J. System & Access
@@ -324,7 +334,7 @@ export default defineSchema({
   }),
 
   // -------------------------
-  // K. Subscriptions (Optional)
+  // K. Subscriptions
   // -------------------------
   subscriptionPlans: defineTable({
     title: v.string(),
