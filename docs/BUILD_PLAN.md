@@ -4,7 +4,7 @@ Reference designs: `docs/UI.html`
 
 Goal: Ship a production-grade family health management app that centralizes medical records, appointments, and sharing permissions across a household.
 
-Tech stack: React Native + Expo (Expo Router, TypeScript, NativeWind), Convex (data, auth, jobs), React Query/TanStack Query, Expo Notifications, EAS.
+Tech stack: React Native + Expo (Expo Router, TypeScript), Convex (data, auth, jobs), React Query/TanStack Query, Expo Notifications, EAS, lucide-react-native (icons).
 
 Conventions:
 
@@ -31,10 +31,10 @@ Conventions:
 
 ## 1) Design System and Theming
 
-- [ ] NativeWind configured for Expo
-  - Acceptance: Tailwind classes apply on device; dark mode toggleable via system
+- [ ] Theme system and dark mode
+  - Acceptance: Consistent theming via `ThemedText`/`ThemedView` and `useColorScheme`; dark mode follows system
 - [ ] Brand tokens implemented
-  - Acceptance: Color tokens from `UI.html` available via Tailwind theme extension:
+  - Acceptance: Color tokens from `UI.html` are available in a central theme module/constants:
     - brand.primary `#FD8006`
     - brand.secondary `#FF6B35`
     - info/security `#455581`
@@ -44,6 +44,8 @@ Conventions:
     - surface/background tiers (white, gray-50, gray-100)
 - [ ] Core components
   - Acceptance: Reusable `Button`, `Card`, `Icon`, `ListItem`, `Chip`, `Text`, `View` variants mirror `UI.html` styles and spacing
+- [ ] Icons (lucide-react-native)
+  - Acceptance: `lucide-react-native` installed and wired into a thin `Icon` wrapper; consistent sizes/colors across platforms
 - [ ] Motion & haptics
   - Acceptance: Press feedback + subtle transitions for interactive elements; haptic feedback on primary actions (iOS/Android)
 

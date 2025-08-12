@@ -1,80 +1,259 @@
-import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import {
+  Calendar,
+  ChevronRight,
+  Pill,
+  Plus,
+  Share2,
+  User,
+} from "lucide-react-native";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">
-            npm run reset-project
-          </ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ThemedView style={styles.screen}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        {/* Header */}
+        <View style={styles.header}>
+          <View>
+            <ThemedText style={styles.headerTitle}>
+              Buenos días, Sarah
+            </ThemedText>
+            <ThemedText style={styles.headerSubtitle}>
+              Este es tu resumen de salud familiar
+            </ThemedText>
+          </View>
+        </View>
+
+        {/* Family Members */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <ThemedText style={styles.sectionTitle}>
+              Miembros de la Familia
+            </ThemedText>
+            <TouchableOpacity activeOpacity={0.8}>
+              <ThemedText style={styles.linkButton}>Añadir Miembro</ThemedText>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.cardList}>
+            <TouchableOpacity style={styles.card} activeOpacity={0.9}>
+              <View style={styles.cardRow}>
+                <View style={styles.avatarCircle}>
+                  <User size={24} color="#6B7280" />
+                </View>
+                <View style={styles.cardTextBlock}>
+                  <ThemedText style={styles.cardTitle}>
+                    Sarah Johnson
+                  </ThemedText>
+                  <ThemedText style={styles.cardSubtitle}>
+                    Administradora Principal
+                  </ThemedText>
+                </View>
+                <ChevronRight size={22} color="#9CA3AF" />
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.card} activeOpacity={0.9}>
+              <View style={styles.cardRow}>
+                <View style={styles.avatarCircle}>
+                  <User size={24} color="#6B7280" />
+                </View>
+                <View style={styles.cardTextBlock}>
+                  <ThemedText style={styles.cardTitle}>Mike Johnson</ThemedText>
+                  <ThemedText style={styles.cardSubtitle}>
+                    Miembro Familiar
+                  </ThemedText>
+                </View>
+                <ChevronRight size={22} color="#9CA3AF" />
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.card} activeOpacity={0.9}>
+              <View style={styles.cardRow}>
+                <View style={styles.avatarCircle}>
+                  <User size={24} color="#6B7280" />
+                </View>
+                <View style={styles.cardTextBlock}>
+                  <ThemedText style={styles.cardTitle}>Emma Johnson</ThemedText>
+                  <ThemedText style={styles.cardSubtitle}>
+                    Dependiente (Hija)
+                  </ThemedText>
+                </View>
+                <ChevronRight size={22} color="#9CA3AF" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Quick Actions */}
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>Acciones Rápidas</ThemedText>
+          <View style={styles.quickGrid}>
+            <TouchableOpacity style={styles.quickCard} activeOpacity={0.9}>
+              <View
+                style={[styles.quickIconCircle, { backgroundColor: "#FDE8EA" }]}
+              >
+                <Plus size={18} color="#f9545d" />
+              </View>
+              <ThemedText style={styles.quickLabel}>Añadir Registro</ThemedText>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.quickCard} activeOpacity={0.9}>
+              <View
+                style={[styles.quickIconCircle, { backgroundColor: "#E9EEF6" }]}
+              >
+                <Calendar size={18} color="#455581" />
+              </View>
+              <ThemedText style={styles.quickLabel}>Programar Cita</ThemedText>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.quickCard} activeOpacity={0.9}>
+              <View
+                style={[styles.quickIconCircle, { backgroundColor: "#F6E8F0" }]}
+              >
+                <Pill size={18} color="#CB4E8B" />
+              </View>
+              <ThemedText style={styles.quickLabel}>Medicamentos</ThemedText>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.quickCard} activeOpacity={0.9}>
+              <View
+                style={[styles.quickIconCircle, { backgroundColor: "#EEE6F4" }]}
+              >
+                <Share2 size={18} color="#855798" />
+              </View>
+              <ThemedText style={styles.quickLabel}>Compartir Info</ThemedText>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  screen: {
+    flex: 1,
+    backgroundColor: "#F9FAFB",
+  },
+  scrollContent: {
+    paddingBottom: 24,
+  },
+  header: {
+    backgroundColor: "#FFFFFF",
+    paddingTop: 48,
+    paddingBottom: 16,
+    paddingHorizontal: 24,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#F3F4F6",
+  },
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#111827",
+  },
+  headerSubtitle: {
+    marginTop: 4,
+    fontSize: 14,
+    color: "#4B5563",
+  },
+  section: {
+    paddingHorizontal: 24,
+    paddingTop: 16,
+  },
+  sectionHeader: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    justifyContent: "space-between",
+    marginBottom: 12,
   },
-  stepContainer: {
-    gap: 8,
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#111827",
+  },
+  linkButton: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#FD8006",
+  },
+  cardList: {
+    gap: 12,
+  },
+  card: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.04)",
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
+  },
+  cardRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  avatarCircle: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: "#E5E7EB",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 16,
+  },
+  cardTextBlock: {
+    flex: 1,
+  },
+  cardTitle: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#111827",
+  },
+  cardSubtitle: {
+    marginTop: 2,
+    fontSize: 12,
+    color: "#6B7280",
+  },
+  quickGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+  },
+  quickCard: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.04)",
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
+    width: "48%",
+  },
+  quickIconCircle: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+  quickLabel: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#111827",
+    textAlign: "center",
   },
 });
