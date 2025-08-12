@@ -6,6 +6,7 @@ export default defineSchema({
   // A. Organization & Structure
   // -------------------------
   organizations: defineTable({
+    slug: v.string(),
     name: v.string(),
     cif: v.string(),
     billingAddress: v.string(),
@@ -18,7 +19,9 @@ export default defineSchema({
     technicalContactPhone: v.string(),
   }),
 
+  // A center only belongs to one organization
   centers: defineTable({
+    slug: v.string(),
     organizationId: v.id("organizations"),
     name: v.string(),
     address: v.string(),
@@ -27,20 +30,22 @@ export default defineSchema({
     contactPhone: v.string(),
   }).index("by_organization", ["organizationId"]),
 
+  // A Professional can be associated with multiple centers
   professionals: defineTable({
     centerId: v.id("centers"),
+    username: v.string(),
     name: v.string(),
     surname: v.string(),
     licenseNumber: v.string(),
     email: v.string(),
     phone: v.string(),
-    doctorInternalId: v.string(), // What is referenced to?
   }).index("by_center", ["centerId"]),
 
   // -------------------------
-  // B. Customer & Person (Patients)
+  // B. Customer & Person
   // -------------------------
   persons: defineTable({
+    username: v.string(),
     photo: v.string(),
     nickname: v.string(),
     name: v.string(),
@@ -52,6 +57,14 @@ export default defineSchema({
     doctorId: v.string(),
     documentType: v.string(),
     documentNumber: v.string(),
+
+    // Contact information
+    email: v.string(),
+    mobilePhone: v.string(),
+    address: v.string(),
+    postalCode: v.string(),
+    city: v.string(),
+    country: v.string(),
   }),
 
   customers: defineTable({
@@ -70,21 +83,9 @@ export default defineSchema({
     .index("by_email", ["email"])
     .index("by_document", ["documentType", "documentNumber"]),
 
-  customerPersons: defineTable({
+  customerPersonRelations: defineTable({
     customerId: v.id("customers"), // The payer
     personId: v.id("persons"), // The dependent or covered person
-    relationship: v.string(), // e.g., "son", "daughter", "wife", "husband", "parent", "other"
-  }),
-
-  personContacts: defineTable({
-    // is this needed?
-    personId: v.id("persons"),
-    email: v.string(),
-    mobilePhone: v.string(),
-    address: v.string(),
-    postalCode: v.string(),
-    city: v.string(),
-    country: v.string(),
   }),
 
   personEmergencyContacts: defineTable({
@@ -120,12 +121,13 @@ export default defineSchema({
 
   allergies: defineTable({
     personId: v.id("persons"),
-    allergyTypeId: v.id("allergyTypes"),
+    allergyTypeId: v.id("allergyTypes"), // e.g., "allergy", "intolerance", "food_preference", "other"
     description: v.string(),
     treatment: v.string(),
     comments: v.string(),
   }),
 
+  // TODO: if values are not known, we can use a enum instead of a table
   allergyTypes: defineTable({
     name: v.string(),
   }),
@@ -150,9 +152,9 @@ export default defineSchema({
   }),
 
   // -------------------------
-  // E. Medical History
+  // E. Medical Record
   // -------------------------
-  histories: defineTable({
+  medicalRecords: defineTable({
     personId: v.id("persons"),
     title: v.string(),
     date: v.string(),
@@ -167,8 +169,8 @@ export default defineSchema({
     chronic: v.boolean(),
   }),
 
-  historyFiles: defineTable({
-    historyId: v.id("histories"),
+  medicalRecordFiles: defineTable({
+    medicalRecordId: v.id("medicalRecords"),
     fileType: v.string(),
     filePath: v.string(),
     comments: v.string(),
@@ -178,7 +180,7 @@ export default defineSchema({
     name: v.string(),
   }),
 
-  historyTypes: defineTable({
+  medicalRecordTypes: defineTable({
     name: v.string(),
   }),
 
@@ -209,8 +211,8 @@ export default defineSchema({
     comments: v.string(),
   }),
 
-  historyMedicines: defineTable({
-    historyId: v.id("histories"),
+  medicalRecordMedicines: defineTable({
+    medicalRecordId: v.id("medicalRecords"),
     medicineId: v.id("medicines"),
   }),
 
@@ -238,8 +240,8 @@ export default defineSchema({
     name: v.string(),
   }),
 
-  historyVaccines: defineTable({
-    historyId: v.id("histories"),
+  medicalRecordVaccines: defineTable({
+    medicalRecordId: v.id("medicalRecords"),
     vaccineId: v.id("vaccines"),
   }),
 
