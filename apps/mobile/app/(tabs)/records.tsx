@@ -2,6 +2,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import {
   CalendarDays,
+  ChevronRight,
   FileText,
   Image as ImageIcon,
   Pill,
@@ -53,21 +54,31 @@ export default function RecordsScreen() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.filtersRow}
           >
-            <TouchableOpacity
-              style={[styles.chip, styles.chipActive]}
-              activeOpacity={0.8}
-            >
-              <ThemedText style={styles.chipActiveText}>Todos</ThemedText>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chip} activeOpacity={0.8}>
-              <ThemedText style={styles.chipText}>Análisis</ThemedText>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chip} activeOpacity={0.8}>
-              <ThemedText style={styles.chipText}>Recetas</ThemedText>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chip} activeOpacity={0.8}>
-              <ThemedText style={styles.chipText}>Imágenes</ThemedText>
-            </TouchableOpacity>
+            {[
+              "Todos",
+              "Hoja de Medicación",
+              "Informe",
+              "Prueba de Laboratorio",
+              "Prueba de Imagen",
+              "Enfermería",
+              "Síntoma / Evento",
+              "Foto",
+              "Medicamento",
+              "Vacuna",
+              "Otros",
+            ].map((label, idx) => (
+              <TouchableOpacity
+                key={label}
+                style={[styles.chip, idx === 0 && styles.chipActive]}
+                activeOpacity={0.8}
+              >
+                <ThemedText
+                  style={idx === 0 ? styles.chipActiveText : styles.chipText}
+                >
+                  {label}
+                </ThemedText>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </View>
 
@@ -87,22 +98,13 @@ export default function RecordsScreen() {
                     Resultados de Análisis de Sangre
                   </ThemedText>
                   <ThemedText style={styles.cardMeta}>
-                    Dr. Smith • 15 de Marzo, 2024
+                    Hematología • 15 de Marzo, 2024
                   </ThemedText>
                 </View>
               </View>
-              <FileText size={18} color="#9CA3AF" />
+              <ChevronRight size={22} color="#9CA3AF" />
             </View>
-            <View style={styles.tagRow}>
-              <View style={styles.tagPillLight}>
-                <ThemedText style={styles.tagPillLightText}>Normal</ThemedText>
-              </View>
-              <View style={styles.tagPillOutline}>
-                <ThemedText style={styles.tagPillOutlineText}>
-                  Reporte de Lab
-                </ThemedText>
-              </View>
-            </View>
+            {/* tags removed */}
           </TouchableOpacity>
 
           {/* Radiografía de Tórax */}
@@ -119,22 +121,13 @@ export default function RecordsScreen() {
                     Radiografía de Tórax
                   </ThemedText>
                   <ThemedText style={styles.cardMeta}>
-                    Dr. Johnson • 10 de Marzo, 2024
+                    Radiología • 10 de Marzo, 2024
                   </ThemedText>
                 </View>
               </View>
-              <ImageIcon size={18} color="#9CA3AF" />
+              <ChevronRight size={22} color="#9CA3AF" />
             </View>
-            <View style={styles.tagRow}>
-              <View style={styles.tagPillLight}>
-                <ThemedText style={styles.tagPillLightText}>Normal</ThemedText>
-              </View>
-              <View style={styles.tagPillOutline}>
-                <ThemedText style={styles.tagPillOutlineText}>
-                  Imagen
-                </ThemedText>
-              </View>
-            </View>
+            {/* tags removed */}
           </TouchableOpacity>
 
           {/* Receta - Antibióticos */}
@@ -151,24 +144,13 @@ export default function RecordsScreen() {
                     Receta - Antibióticos
                   </ThemedText>
                   <ThemedText style={styles.cardMeta}>
-                    Dr. Williams • 8 de Marzo, 2024
+                    Medicina General • 8 de Marzo, 2024
                   </ThemedText>
                 </View>
               </View>
-              <Pill size={18} color="#9CA3AF" />
+              <ChevronRight size={22} color="#9CA3AF" />
             </View>
-            <View style={styles.tagRow}>
-              <View style={styles.tagPillLightPink}>
-                <ThemedText style={styles.tagPillLightPinkText}>
-                  Activo
-                </ThemedText>
-              </View>
-              <View style={styles.tagPillTintPink}>
-                <ThemedText style={styles.tagPillTintPinkText}>
-                  Medicamento
-                </ThemedText>
-              </View>
-            </View>
+            {/* tags removed */}
           </TouchableOpacity>
 
           {/* Vacuna COVID-19 */}
@@ -185,24 +167,13 @@ export default function RecordsScreen() {
                     Vacuna COVID-19
                   </ThemedText>
                   <ThemedText style={styles.cardMeta}>
-                    Clínica de Salud Municipal • 20 de Feb, 2024
+                    Vacunación • 20 de Feb, 2024
                   </ThemedText>
                 </View>
               </View>
-              <CalendarDays size={18} color="#9CA3AF" />
+              <ChevronRight size={22} color="#9CA3AF" />
             </View>
-            <View style={styles.tagRow}>
-              <View style={styles.tagPillLight}>
-                <ThemedText style={styles.tagPillLightText}>
-                  Completado
-                </ThemedText>
-              </View>
-              <View style={styles.tagPillOutline}>
-                <ThemedText style={styles.tagPillOutlineText}>
-                  Inmunización
-                </ThemedText>
-              </View>
-            </View>
+            {/* tags removed */}
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -314,12 +285,14 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
+    position: "relative",
   },
   cardHeaderRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 10,
+    minHeight: 48,
   },
   cardHeaderLeft: {
     flexDirection: "row",

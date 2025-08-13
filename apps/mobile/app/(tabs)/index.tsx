@@ -54,9 +54,6 @@ export default function HomeScreen() {
                   <ThemedText style={styles.cardTitle}>
                     Sarah Johnson
                   </ThemedText>
-                  <ThemedText style={styles.cardSubtitle}>
-                    Administradora Principal
-                  </ThemedText>
                 </View>
                 <ChevronRight size={22} color="#9CA3AF" />
               </View>
@@ -73,9 +70,6 @@ export default function HomeScreen() {
                 </View>
                 <View style={styles.cardTextBlock}>
                   <ThemedText style={styles.cardTitle}>Mike Johnson</ThemedText>
-                  <ThemedText style={styles.cardSubtitle}>
-                    Miembro Familiar
-                  </ThemedText>
                 </View>
                 <ChevronRight size={22} color="#9CA3AF" />
               </View>
@@ -92,9 +86,6 @@ export default function HomeScreen() {
                 </View>
                 <View style={styles.cardTextBlock}>
                   <ThemedText style={styles.cardTitle}>Emma Johnson</ThemedText>
-                  <ThemedText style={styles.cardSubtitle}>
-                    Dependiente (Hija)
-                  </ThemedText>
                 </View>
                 <ChevronRight size={22} color="#9CA3AF" />
               </View>
@@ -104,7 +95,9 @@ export default function HomeScreen() {
 
         {/* Quick Actions */}
         <View style={styles.section}>
-          <ThemedText style={styles.sectionTitle}>Acciones Rápidas</ThemedText>
+          <ThemedText style={[styles.sectionTitle, styles.sectionTitleSpacing]}>
+            Acciones Rápidas
+          </ThemedText>
           <View style={styles.quickGrid}>
             <TouchableOpacity style={styles.quickCard} activeOpacity={0.9}>
               <View
@@ -188,6 +181,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     color: "#111827",
+  },
+  sectionTitleSpacing: {
+    marginBottom: 8,
   },
   linkButton: {
     fontSize: 13,

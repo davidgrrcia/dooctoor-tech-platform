@@ -30,9 +30,6 @@ export default function MemberProfileScreen() {
             </TouchableOpacity>
             <View style={styles.headerTitleBlock}>
               <ThemedText style={styles.headerTitle}>Emma Johnson</ThemedText>
-              <ThemedText style={styles.headerSubtitle}>
-                Edad 8 • Hija
-              </ThemedText>
             </View>
             <TouchableOpacity style={styles.editBtn} activeOpacity={0.9}>
               <Edit2 size={18} color="#FFFFFF" />
@@ -189,7 +186,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: "#FFFFFF",
-    paddingTop: 64,
+    paddingTop: 24,
     paddingBottom: 16,
     paddingHorizontal: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
