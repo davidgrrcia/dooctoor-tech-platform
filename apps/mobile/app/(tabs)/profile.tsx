@@ -1,6 +1,21 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { ChevronRight, User, Users } from "lucide-react-native";
+import {
+  Bell,
+  ChevronRight,
+  CreditCard,
+  Download,
+  FileText,
+  Fingerprint,
+  Lock,
+  LogOut,
+  Mail,
+  Shield,
+  ShieldCheck,
+  Trash2,
+  User,
+  Users,
+} from "lucide-react-native";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function ProfileScreen() {
@@ -23,9 +38,6 @@ export default function ProfileScreen() {
             <ThemedText style={styles.profileName}>Sarah Johnson</ThemedText>
             <ThemedText style={styles.profileMeta}>
               sarah.johnson@email.com
-            </ThemedText>
-            <ThemedText style={styles.profileMeta}>
-              Administrador Familiar
             </ThemedText>
           </View>
           <ChevronRight size={22} color="#9CA3AF" />
@@ -51,7 +63,7 @@ export default function ProfileScreen() {
 
           <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
             <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
-              <Users size={18} color="#855798" />
+              <ShieldCheck size={18} color="#855798" />
             </View>
             <View style={styles.itemTextBlock}>
               <ThemedText style={styles.itemTitle}>
@@ -59,6 +71,21 @@ export default function ProfileScreen() {
               </ThemedText>
               <ThemedText style={styles.itemSubtitle}>
                 Controla quién puede acceder a los registros
+              </ThemedText>
+            </View>
+            <ChevronRight size={20} color="#9CA3AF" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
+            <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
+              <CreditCard size={18} color="#455581" />
+            </View>
+            <View style={styles.itemTextBlock}>
+              <ThemedText style={styles.itemTitle}>
+                Gestionar suscripción
+              </ThemedText>
+              <ThemedText style={styles.itemSubtitle}>
+                Plan, facturación y métodos de pago
               </ThemedText>
             </View>
             <ChevronRight size={20} color="#9CA3AF" />
@@ -72,7 +99,7 @@ export default function ProfileScreen() {
           </ThemedText>
           <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
             <View style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}>
-              <User size={18} color="#455581" />
+              <Lock size={18} color="#455581" />
             </View>
             <View style={styles.itemTextBlock}>
               <ThemedText style={styles.itemTitle}>
@@ -87,7 +114,7 @@ export default function ProfileScreen() {
 
           <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
             <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
-              <User size={18} color="#6B7280" />
+              <Fingerprint size={18} color="#6B7280" />
             </View>
             <View style={styles.itemTextBlock}>
               <ThemedText style={styles.itemTitle}>
@@ -111,7 +138,7 @@ export default function ProfileScreen() {
           </ThemedText>
           <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
             <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
-              <User size={18} color="#CB4E8B" />
+              <Bell size={18} color="#CB4E8B" />
             </View>
             <View style={styles.itemTextBlock}>
               <ThemedText style={styles.itemTitle}>Notificaciones</ThemedText>
@@ -124,12 +151,103 @@ export default function ProfileScreen() {
 
           <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
             <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
-              <User size={18} color="#6B7280" />
+              <Download size={18} color="#6B7280" />
             </View>
             <View style={styles.itemTextBlock}>
               <ThemedText style={styles.itemTitle}>Exportar Datos</ThemedText>
               <ThemedText style={styles.itemSubtitle}>
                 Descarga tus datos de salud
+              </ThemedText>
+            </View>
+            <ChevronRight size={20} color="#9CA3AF" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
+            <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
+              <Shield size={18} color="#455581" />
+            </View>
+            <View style={styles.itemTextBlock}>
+              <ThemedText style={styles.itemTitle}>
+                Gestión de consentimientos
+              </ThemedText>
+              <ThemedText style={styles.itemSubtitle}>
+                Control de permisos informados
+              </ThemedText>
+            </View>
+            <ChevronRight size={20} color="#9CA3AF" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Información y Soporte */}
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>Información</ThemedText>
+          <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
+            <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
+              <Mail size={18} color="#455581" />
+            </View>
+            <View style={styles.itemTextBlock}>
+              <ThemedText style={styles.itemTitle}>Contactar</ThemedText>
+              <ThemedText style={styles.itemSubtitle}>
+                Envíanos tus dudas o sugerencias
+              </ThemedText>
+            </View>
+            <ChevronRight size={20} color="#9CA3AF" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
+            <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
+              <Shield size={18} color="#455581" />
+            </View>
+            <View style={styles.itemTextBlock}>
+              <ThemedText style={styles.itemTitle}>
+                Política de privacidad
+              </ThemedText>
+              <ThemedText style={styles.itemSubtitle}>
+                Cómo protegemos y tratamos tus datos
+              </ThemedText>
+            </View>
+            <ChevronRight size={20} color="#9CA3AF" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
+            <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
+              <FileText size={18} color="#455581" />
+            </View>
+            <View style={styles.itemTextBlock}>
+              <ThemedText style={styles.itemTitle}>
+                Condiciones de uso
+              </ThemedText>
+              <ThemedText style={styles.itemSubtitle}>
+                Términos que rigen el servicio
+              </ThemedText>
+            </View>
+            <ChevronRight size={20} color="#9CA3AF" />
+          </TouchableOpacity>
+        </View>
+        {/* Cuenta */}
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>Cuenta</ThemedText>
+          <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
+            <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
+              <LogOut size={18} color="#CB4E8B" />
+            </View>
+            <View style={styles.itemTextBlock}>
+              <ThemedText style={styles.itemTitle}>Cerrar sesión</ThemedText>
+              <ThemedText style={styles.itemSubtitle}>
+                Salir de tu cuenta en este dispositivo
+              </ThemedText>
+            </View>
+            <ChevronRight size={20} color="#9CA3AF" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.cardRowItem} activeOpacity={0.9}>
+            <View style={[styles.iconCircle, { backgroundColor: "#FDE8EA" }]}>
+              <Trash2 size={18} color="#f9545d" />
+            </View>
+            <View style={styles.itemTextBlock}>
+              <ThemedText style={styles.itemTitle}>Eliminar cuenta</ThemedText>
+              <ThemedText style={styles.itemSubtitle}>
+                Borrar toda tu información de forma permanente
               </ThemedText>
             </View>
             <ChevronRight size={20} color="#9CA3AF" />
@@ -146,7 +264,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F9FAFB",
   },
   scrollContent: {
-    paddingBottom: 24,
+    paddingBottom: 140,
   },
   header: {
     backgroundColor: "#FFFFFF",

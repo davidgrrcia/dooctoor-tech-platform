@@ -6,7 +6,11 @@ import {
   Calendar,
   Check,
   ChevronLeft,
+  ChevronRight,
   Edit2,
+  FileText,
+  Image as ImageIcon,
+  Pill,
   Stethoscope,
   Syringe,
   User,
@@ -45,8 +49,10 @@ export default function MemberProfileScreen() {
               <View style={styles.profileTextBlock}>
                 <View style={styles.nameRow}>
                   <ThemedText style={styles.nameText}>Emma Johnson</ThemedText>
-                  <View style={styles.statusDot} />
                 </View>
+                <ThemedText style={styles.metaText}>
+                  Género: Femenino
+                </ThemedText>
                 <ThemedText style={styles.metaText}>
                   Nacida: 15 de Marzo, 2016
                 </ThemedText>
@@ -59,16 +65,16 @@ export default function MemberProfileScreen() {
             {/* Quick Stats */}
             <View style={styles.statsGrid}>
               <View style={styles.statItem}>
-                <ThemedText style={styles.statValue}>127 cm</ThemedText>
-                <ThemedText style={styles.statLabel}>Altura</ThemedText>
+                <ThemedText style={styles.statValue}>8 años</ThemedText>
+                <ThemedText style={styles.statLabel}>Edad</ThemedText>
               </View>
               <View style={styles.statItem}>
                 <ThemedText style={styles.statValue}>25 kg</ThemedText>
                 <ThemedText style={styles.statLabel}>Peso</ThemedText>
               </View>
               <View style={styles.statItem}>
-                <ThemedText style={styles.statValue}>37°C</ThemedText>
-                <ThemedText style={styles.statLabel}>Últ. Temp</ThemedText>
+                <ThemedText style={styles.statValue}>127 cm</ThemedText>
+                <ThemedText style={styles.statLabel}>Altura</ThemedText>
               </View>
             </View>
           </View>
@@ -120,6 +126,86 @@ export default function MemberProfileScreen() {
                   15 de Abril, 2024 a las 2:00 PM
                 </ThemedText>
               </View>
+            </View>
+          </View>
+        </View>
+
+        {/* Registros Favoritos */}
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>
+            Registros Favoritos
+          </ThemedText>
+          <View style={styles.card}>
+            <View style={styles.cardRow}>
+              <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
+                <FileText size={18} color="#455581" />
+              </View>
+              <View style={styles.cardTextBlock}>
+                <ThemedText style={styles.recordTitle}>
+                  Plan de Tratamiento
+                </ThemedText>
+                <ThemedText style={styles.recordMeta}>
+                  Medicina General • 12 de Mar, 2024
+                </ThemedText>
+              </View>
+              <ChevronRight size={20} color="#9CA3AF" />
+            </View>
+          </View>
+
+          <View style={styles.card}>
+            <View style={styles.cardRow}>
+              <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
+                <ImageIcon size={18} color="#455581" />
+              </View>
+              <View style={styles.cardTextBlock}>
+                <ThemedText style={styles.recordTitle}>
+                  Resultados Hematología
+                </ThemedText>
+                <ThemedText style={styles.recordMeta}>
+                  Hematología • 5 de Mar, 2024
+                </ThemedText>
+              </View>
+              <ChevronRight size={20} color="#9CA3AF" />
+            </View>
+          </View>
+        </View>
+
+        {/* Registros Crónicos / Permanentes */}
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>
+            Registros Crónicos / Permanentes
+          </ThemedText>
+          <View style={styles.card}>
+            <View style={styles.cardRow}>
+              <View style={[styles.iconCircle, { backgroundColor: "#F6E8F0" }]}>
+                <AlertTriangle size={18} color="#CB4E8B" />
+              </View>
+              <View style={styles.cardTextBlock}>
+                <ThemedText style={styles.recordTitle}>
+                  Alergia: Cacahuetes
+                </ThemedText>
+                <ThemedText style={styles.recordMeta}>
+                  Alergología • Permanente
+                </ThemedText>
+              </View>
+              <ChevronRight size={20} color="#9CA3AF" />
+            </View>
+          </View>
+
+          <View style={styles.card}>
+            <View style={styles.cardRow}>
+              <View style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}>
+                <Pill size={18} color="#455581" />
+              </View>
+              <View style={styles.cardTextBlock}>
+                <ThemedText style={styles.recordTitle}>
+                  Asma — Plan de Acción
+                </ThemedText>
+                <ThemedText style={styles.recordMeta}>
+                  Neumología • Revisión: 20 de Feb, 2024
+                </ThemedText>
+              </View>
+              <ChevronRight size={20} color="#9CA3AF" />
             </View>
           </View>
         </View>
