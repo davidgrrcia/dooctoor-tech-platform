@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
@@ -12,6 +13,7 @@ import {
 } from "lucide-react-native";
 
 export default function HomeScreen() {
+  const router = useRouter();
   return (
     <ThemedView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -39,7 +41,11 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.cardList}>
-            <TouchableOpacity style={styles.card} activeOpacity={0.9}>
+            <TouchableOpacity
+              style={styles.card}
+              activeOpacity={0.9}
+              onPress={() => router.push("/members/sarah")}
+            >
               <View style={styles.cardRow}>
                 <View style={styles.avatarCircle}>
                   <User size={24} color="#6B7280" />
@@ -56,7 +62,11 @@ export default function HomeScreen() {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card} activeOpacity={0.9}>
+            <TouchableOpacity
+              style={styles.card}
+              activeOpacity={0.9}
+              onPress={() => router.push("/members/mike")}
+            >
               <View style={styles.cardRow}>
                 <View style={styles.avatarCircle}>
                   <User size={24} color="#6B7280" />
@@ -71,7 +81,11 @@ export default function HomeScreen() {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card} activeOpacity={0.9}>
+            <TouchableOpacity
+              style={styles.card}
+              activeOpacity={0.9}
+              onPress={() => router.push("/members/emma")}
+            >
               <View style={styles.cardRow}>
                 <View style={styles.avatarCircle}>
                   <User size={24} color="#6B7280" />
