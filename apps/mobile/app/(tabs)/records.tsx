@@ -36,8 +36,8 @@ export default function RecordsScreen() {
             </TouchableOpacity>
           </View>
           {/* Search */}
-          <View style={styles.searchContainer}>
-            <Search size={18} color="#9CA3AF" style={styles.searchIcon} />
+          <View style={styles.searchBar}>
+            <Search size={18} color="#9CA3AF" />
             <TextInput
               placeholder="Buscar registros..."
               placeholderTextColor="#9CA3AF"
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: "#FFFFFF",
-    paddingTop: 48,
+    paddingTop: 64,
     paddingBottom: 16,
     paddingHorizontal: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -233,9 +233,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   headerLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: 2,
   },
   headerTitle: {
     fontSize: 22,
@@ -255,21 +255,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#FD8006",
   },
-  searchContainer: {
+  searchBar: {
     marginTop: 8,
-    position: "relative",
-  },
-  searchIcon: {
-    position: "absolute",
-    left: 12,
-    top: 12,
-  },
-  searchInput: {
     height: 44,
     borderRadius: 14,
-    paddingLeft: 40,
-    paddingRight: 12,
     backgroundColor: "#F3F4F6",
+    paddingHorizontal: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  searchInput: {
+    flex: 1,
     color: "#111827",
   },
   filtersBar: {

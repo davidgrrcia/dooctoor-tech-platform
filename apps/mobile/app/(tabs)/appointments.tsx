@@ -10,9 +10,6 @@ export default function AppointmentsScreen() {
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.headerRow}>
-            <TouchableOpacity style={styles.headerBackBtn} activeOpacity={0.8}>
-              <ChevronLeft size={18} color="#4B5563" />
-            </TouchableOpacity>
             <View style={styles.headerTitleBlock}>
               <ThemedText style={styles.headerTitle}>Agenda</ThemedText>
               <ThemedText style={styles.headerSubtitle}>
@@ -205,7 +202,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: "#FFFFFF",
-    paddingTop: 48,
+    paddingTop: 64,
     paddingBottom: 16,
     paddingHorizontal: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -246,12 +243,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#FD8006",
   },
   monthNav: {
-    backgroundColor: "#F9FAFB",
+    backgroundColor: "#FFFFFF",
     paddingHorizontal: 24,
-    paddingVertical: 12,
+    paddingVertical: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#F3F4F6",
   },
   monthBtn: {
     width: 32,
@@ -275,12 +274,13 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     elevation: 1,
     overflow: "hidden",
+    marginTop: 12,
     marginBottom: 12,
   },
   weekdaysRow: {
     flexDirection: "row",
     paddingHorizontal: 16,
-    paddingTop: 12,
+    paddingTop: 16,
     paddingBottom: 4,
   },
   weekday: {
@@ -332,8 +332,8 @@ const styles = StyleSheet.create({
   dotBlue: { backgroundColor: "#455581" },
   section: {
     paddingHorizontal: 24,
-    paddingTop: 12,
-    gap: 8,
+    paddingTop: 16,
+    gap: 12,
   },
   sectionTitle: {
     fontSize: 16,
