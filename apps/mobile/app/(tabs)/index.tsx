@@ -6,9 +6,9 @@ import { ThemedView } from "@/components/ThemedView";
 import {
   Calendar,
   ChevronRight,
+  FilePlus,
+  FileText,
   Pill,
-  Plus,
-  Share2,
   User,
 } from "lucide-react-native";
 
@@ -103,36 +103,40 @@ export default function HomeScreen() {
               <View
                 style={[styles.quickIconCircle, { backgroundColor: "#FDE8EA" }]}
               >
-                <Plus size={18} color="#f9545d" />
+                <FilePlus size={18} color="#f9545d" />
               </View>
-              <ThemedText style={styles.quickLabel}>Añadir Registro</ThemedText>
+              <ThemedText style={styles.quickLabel}>
+                Añadir documento
+              </ThemedText>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.quickCard} activeOpacity={0.9}>
               <View
                 style={[styles.quickIconCircle, { backgroundColor: "#E9EEF6" }]}
               >
-                <Calendar size={18} color="#455581" />
+                <FileText size={18} color="#455581" />
               </View>
-              <ThemedText style={styles.quickLabel}>Programar Cita</ThemedText>
+              <ThemedText style={styles.quickLabel}>Añadir registro</ThemedText>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.quickCard} activeOpacity={0.9}>
               <View
                 style={[styles.quickIconCircle, { backgroundColor: "#F6E8F0" }]}
               >
-                <Pill size={18} color="#CB4E8B" />
+                <Calendar size={18} color="#CB4E8B" />
               </View>
-              <ThemedText style={styles.quickLabel}>Medicamentos</ThemedText>
+              <ThemedText style={styles.quickLabel}>Añadir cita</ThemedText>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.quickCard} activeOpacity={0.9}>
               <View
                 style={[styles.quickIconCircle, { backgroundColor: "#EEE6F4" }]}
               >
-                <Share2 size={18} color="#855798" />
+                <Pill size={18} color="#855798" />
               </View>
-              <ThemedText style={styles.quickLabel}>Compartir Info</ThemedText>
+              <ThemedText style={styles.quickLabel}>
+                Añadir medicamento
+              </ThemedText>
             </TouchableOpacity>
           </View>
         </View>

@@ -7,6 +7,13 @@ export default function ProfileScreen() {
   return (
     <ThemedView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
+        {/* Header */}
+        <View style={styles.header}>
+          <ThemedText style={styles.headerTitle}>Configuración</ThemedText>
+          <ThemedText style={styles.headerSubtitle}>
+            Gestiona tu cuenta
+          </ThemedText>
+        </View>
         {/* Profile Summary */}
         <View style={styles.profileSummary}>
           <View style={styles.avatarCircleLg}>
@@ -141,6 +148,24 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: 24,
   },
+  header: {
+    backgroundColor: "#FFFFFF",
+    paddingTop: 64,
+    paddingBottom: 16,
+    paddingHorizontal: 24,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#F3F4F6",
+  },
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#111827",
+  },
+  headerSubtitle: {
+    marginTop: 2,
+    fontSize: 14,
+    color: "#4B5563",
+  },
   profileSummary: {
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
@@ -152,7 +177,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
-    marginTop: 64,
+    marginTop: 16,
     marginHorizontal: 24,
     flexDirection: "row",
     alignItems: "center",

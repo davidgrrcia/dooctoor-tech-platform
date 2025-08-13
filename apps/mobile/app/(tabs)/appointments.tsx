@@ -1,6 +1,12 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react-native";
+import { BlurView } from "expo-blur";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Hourglass,
+  Plus,
+} from "lucide-react-native";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function AppointmentsScreen() {
@@ -188,6 +194,21 @@ export default function AppointmentsScreen() {
           </View>
         </View>
       </ScrollView>
+      {/* MVP overlay */}
+      <View pointerEvents="auto" style={styles.overlay}>
+        <BlurView
+          intensity={40}
+          tint="systemChromeMaterial"
+          style={StyleSheet.absoluteFill}
+        />
+        <View style={styles.overlayCard}>
+          <Hourglass size={24} color="#455581" />
+          <ThemedText style={styles.overlayTitle}>Próximamente</ThemedText>
+          <ThemedText style={styles.overlayText}>
+            Esta sección estará disponible en una próxima versión.
+          </ThemedText>
+        </View>
+      </View>
     </ThemedView>
   );
 }
@@ -196,6 +217,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: "#F9FAFB",
+    position: "relative",
   },
   scrollContent: {
     paddingBottom: 24,
@@ -378,5 +400,42 @@ const styles = StyleSheet.create({
   cardMeta: {
     fontSize: 12,
     color: "#6B7280",
+  },
+  overlay: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  // removed colored backdrops; using BlurView instead
+  overlayCard: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    alignItems: "center",
+    gap: 8,
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.04)",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 3,
+  },
+  overlayTitle: {
+    marginTop: 4,
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#111827",
+  },
+  overlayText: {
+    textAlign: "center",
+    color: "#4B5563",
+    fontSize: 13,
+    maxWidth: 260,
   },
 });
