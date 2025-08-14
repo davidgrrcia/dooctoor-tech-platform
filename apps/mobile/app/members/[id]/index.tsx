@@ -1,6 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   AlertTriangle,
   Calendar,
@@ -19,6 +19,12 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function MemberProfileScreen() {
   const router = useRouter();
+  const { id } = useLocalSearchParams<{ id: string }>();
+
+  const handleOpenInfo = () => {
+    router.push(`/members/${id}/info`);
+  };
+
   return (
     <ThemedView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -41,7 +47,11 @@ export default function MemberProfileScreen() {
           </View>
 
           {/* Profile Card */}
-          <View style={styles.profileCard}>
+          <TouchableOpacity
+            style={styles.profileCard}
+            activeOpacity={0.85}
+            onPress={handleOpenInfo}
+          >
             <View style={styles.profileRow}>
               <View style={styles.avatarCircle}>
                 <User size={32} color="#6B7280" />
@@ -77,7 +87,16 @@ export default function MemberProfileScreen() {
                 <ThemedText style={styles.statLabel}>Altura</ThemedText>
               </View>
             </View>
-          </View>
+
+            {/* Chevron Indicator */}
+            <TouchableOpacity
+              style={styles.cardChevronBtn}
+              onPress={handleOpenInfo}
+              activeOpacity={0.7}
+            >
+              <ChevronRight size={18} color="#6B7280" />
+            </TouchableOpacity>
+          </TouchableOpacity>
         </View>
 
         {/* Health Summary */}
@@ -324,6 +343,18 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
+    position: "relative",
+  },
+  cardChevronBtn: {
+    position: "absolute",
+    top: 12,
+    right: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#F3F4F6",
   },
   profileRow: {
     flexDirection: "row",
