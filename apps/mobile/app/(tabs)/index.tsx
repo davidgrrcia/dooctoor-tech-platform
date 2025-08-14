@@ -106,7 +106,7 @@ export default function HomeScreen() {
                 <FilePlus size={18} color="#f9545d" />
               </View>
               <ThemedText style={styles.quickLabel}>
-                Añadir documento
+                Escanear documento
               </ThemedText>
             </TouchableOpacity>
 
