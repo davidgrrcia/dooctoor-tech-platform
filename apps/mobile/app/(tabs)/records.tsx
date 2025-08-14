@@ -56,14 +56,14 @@ export default function RecordsScreen() {
           >
             {[
               "Todos",
-              "Hoja de Medicación",
               "Informe",
+              "Síntoma / Evento",
+              "Hoja de Medicación",
+              "Medicamento",
               "Prueba de Laboratorio",
               "Prueba de Imagen",
               "Enfermería",
-              "Síntoma / Evento",
               "Foto",
-              "Medicamento",
               "Vacuna",
               "Otros",
             ].map((label, idx) => (

@@ -95,6 +95,29 @@ export default function MemberProfileScreen() {
           </TouchableOpacity>
         </View>
 
+        {/* Quick Filters */}
+        <View style={styles.chipsBar}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.chipsRow}
+          >
+            {["Mediciones", "Medicamentos", "Vacunas"].map((label, idx) => (
+              <TouchableOpacity
+                key={label}
+                style={[styles.chip, idx === 0 && styles.chipActive]}
+                activeOpacity={0.8}
+              >
+                <ThemedText
+                  style={idx === 0 ? styles.chipActiveText : styles.chipText}
+                >
+                  {label}
+                </ThemedText>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+
         {/* Registros Favoritos */}
         <View style={styles.section}>
           <View style={styles.sectionHeaderRow}>
@@ -324,6 +347,33 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  chipsBar: {
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+  },
+  chipsRow: {
+    gap: 10,
+  },
+  chip: {
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 999,
+    backgroundColor: "#F3F4F6",
+  },
+  chipText: {
+    color: "#4B5563",
+    fontSize: 13,
+    fontWeight: "600",
+  },
+  chipActive: {
+    backgroundColor: "#FD8006",
+  },
+  chipActiveText: {
+    color: "#FFFFFF",
+    fontSize: 13,
+    fontWeight: "700",
   },
   sectionTitle: {
     fontSize: 16,
