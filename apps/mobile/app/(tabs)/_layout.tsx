@@ -4,7 +4,7 @@ import { Platform } from "react-native";
 
 import { HapticTab } from "@/components/HapticTab";
 import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Calendar, FileText, Home, User } from "lucide-react-native";
+import { Calendar, Home, User } from "lucide-react-native";
 
 export default function TabLayout() {
   return (
@@ -31,15 +31,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <Home size={24} color={color as string} />,
         }}
       />
-      <Tabs.Screen
-        name="records"
-        options={{
-          title: "Registros",
-          tabBarIcon: ({ color }) => (
-            <FileText size={24} color={color as string} />
-          ),
-        }}
-      />
+
       <Tabs.Screen
         name="appointments"
         options={{

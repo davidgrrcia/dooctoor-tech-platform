@@ -1,7 +1,9 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   CalendarDays,
+  ChevronLeft,
   ChevronRight,
   FileText,
   Image as ImageIcon,
@@ -17,13 +19,23 @@ import {
   View,
 } from "react-native";
 
-export default function RecordsScreen() {
+export default function MemberRecordsScreen() {
+  const router = useRouter();
+  useLocalSearchParams<{ id: string }>();
+
   return (
     <ThemedView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.headerRow}>
+            <TouchableOpacity
+              style={styles.backBtn}
+              activeOpacity={0.8}
+              onPress={() => router.back()}
+            >
+              <ChevronLeft size={18} color="#4B5563" />
+            </TouchableOpacity>
             <View style={styles.headerLeft}>
               <ThemedText style={styles.headerTitle}>
                 Registros Médicos
@@ -104,7 +116,6 @@ export default function RecordsScreen() {
               </View>
               <ChevronRight size={22} color="#9CA3AF" />
             </View>
-            {/* tags removed */}
           </TouchableOpacity>
 
           {/* Radiografía de Tórax */}
@@ -127,7 +138,6 @@ export default function RecordsScreen() {
               </View>
               <ChevronRight size={22} color="#9CA3AF" />
             </View>
-            {/* tags removed */}
           </TouchableOpacity>
 
           {/* Receta - Antibióticos */}
@@ -150,7 +160,6 @@ export default function RecordsScreen() {
               </View>
               <ChevronRight size={22} color="#9CA3AF" />
             </View>
-            {/* tags removed */}
           </TouchableOpacity>
 
           {/* Vacuna COVID-19 */}
@@ -173,7 +182,6 @@ export default function RecordsScreen() {
               </View>
               <ChevronRight size={22} color="#9CA3AF" />
             </View>
-            {/* tags removed */}
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -191,7 +199,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: "#FFFFFF",
-    paddingTop: 64,
+    paddingTop: 24,
     paddingBottom: 16,
     paddingHorizontal: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -203,10 +211,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 12,
   },
+  backBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   headerLeft: {
     flexDirection: "column",
     alignItems: "flex-start",
     gap: 2,
+    flex: 1,
+    marginHorizontal: 8,
   },
   headerTitle: {
     fontSize: 22,
@@ -316,53 +333,5 @@ const styles = StyleSheet.create({
     marginTop: 2,
     fontSize: 12,
     color: "#6B7280",
-  },
-  tagRow: {
-    flexDirection: "row",
-    gap: 8,
-  },
-  tagPillLight: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 999,
-    backgroundColor: "#F3F4F6",
-  },
-  tagPillLightText: {
-    color: "#455581",
-    fontSize: 11,
-    fontWeight: "700",
-  },
-  tagPillOutline: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 999,
-    backgroundColor: "rgba(69,85,129,0.1)",
-  },
-  tagPillOutlineText: {
-    color: "#455581",
-    fontSize: 11,
-    fontWeight: "700",
-  },
-  tagPillLightPink: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 999,
-    backgroundColor: "#F3EEF5",
-  },
-  tagPillLightPinkText: {
-    color: "#CB4E8B",
-    fontSize: 11,
-    fontWeight: "700",
-  },
-  tagPillTintPink: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 999,
-    backgroundColor: "rgba(203,78,139,0.1)",
-  },
-  tagPillTintPinkText: {
-    color: "#CB4E8B",
-    fontSize: 11,
-    fontWeight: "700",
   },
 });

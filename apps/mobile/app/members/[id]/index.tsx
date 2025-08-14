@@ -102,19 +102,21 @@ export default function MemberProfileScreen() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.chipsRow}
           >
-            {["Mediciones", "Medicamentos", "Vacunas"].map((label, idx) => (
-              <TouchableOpacity
-                key={label}
-                style={[styles.chip, idx === 0 && styles.chipActive]}
-                activeOpacity={0.8}
-              >
-                <ThemedText
-                  style={idx === 0 ? styles.chipActiveText : styles.chipText}
+            {["Registros", "Mediciones", "Medicamentos", "Vacunas"].map(
+              (label, idx) => (
+                <TouchableOpacity
+                  key={label}
+                  style={[styles.chip, idx === 0 && styles.chipActive]}
+                  activeOpacity={0.8}
                 >
-                  {label}
-                </ThemedText>
-              </TouchableOpacity>
-            ))}
+                  <ThemedText
+                    style={idx === 0 ? styles.chipActiveText : styles.chipText}
+                  >
+                    {label}
+                  </ThemedText>
+                </TouchableOpacity>
+              ),
+            )}
           </ScrollView>
         </View>
 
@@ -124,7 +126,10 @@ export default function MemberProfileScreen() {
             <ThemedText style={styles.sectionTitle}>
               Registros Favoritos
             </ThemedText>
-            <TouchableOpacity activeOpacity={0.8}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => router.push(`/members/${id}/records`)}
+            >
               <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
             </TouchableOpacity>
           </View>
