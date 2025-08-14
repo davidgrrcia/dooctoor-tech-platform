@@ -4,10 +4,13 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   Activity,
   ChevronLeft,
+  Edit2,
   HeartPulse,
   Plus,
   Search,
+  Star,
   Thermometer,
+  Trash2,
 } from "lucide-react-native";
 import {
   ScrollView,
@@ -16,6 +19,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
 
 export default function MemberMeasurementsScreen() {
   const router = useRouter();
@@ -95,6 +99,7 @@ export default function MemberMeasurementsScreen() {
               fecha: "12 Mar 2024, 09:14",
               icon: <Activity size={18} color="#CB4E8B" />,
               tint: "#F6E8F0",
+              favorite: true,
             },
             {
               tipo: "Presión arterial",
@@ -102,6 +107,7 @@ export default function MemberMeasurementsScreen() {
               fecha: "10 Mar 2024, 20:05",
               icon: <HeartPulse size={18} color="#455581" />,
               tint: "#E9EEF6",
+              favorite: false,
             },
             {
               tipo: "Temperatura (ºC)",
@@ -109,24 +115,56 @@ export default function MemberMeasurementsScreen() {
               fecha: "08 Mar 2024, 07:45",
               icon: <Thermometer size={18} color="#455581" />,
               tint: "#E9EEF6",
+              favorite: false,
             },
           ].map((m) => (
-            <View key={`${m.tipo}-${m.fecha}`} style={styles.card}>
-              <View style={styles.cardHeaderRow}>
-                <View style={styles.cardHeaderLeft}>
-                  <View
-                    style={[styles.iconCircle, { backgroundColor: m.tint }]}
+            <Swipeable
+              key={`${m.tipo}-${m.fecha}`}
+              overshootRight={false}
+              renderRightActions={() => (
+                <View style={styles.actionsRow}>
+                  <TouchableOpacity
+                    style={[styles.actionButton, styles.actionFavorite]}
+                    activeOpacity={0.9}
                   >
-                    {m.icon}
-                  </View>
-                  <View>
-                    <ThemedText style={styles.cardTitle}>{m.tipo}</ThemedText>
-                    <ThemedText style={styles.cardMeta}>{m.fecha}</ThemedText>
-                  </View>
+                    {m.favorite ? (
+                      <Star size={18} color="#FFFFFF" fill="#FFFFFF" />
+                    ) : (
+                      <Star size={18} color="#FFFFFF" />
+                    )}
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.actionButton, styles.actionEdit]}
+                    activeOpacity={0.9}
+                  >
+                    <Edit2 size={18} color="#FFFFFF" />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.actionButton, styles.actionDelete]}
+                    activeOpacity={0.9}
+                  >
+                    <Trash2 size={18} color="#FFFFFF" />
+                  </TouchableOpacity>
                 </View>
-                <ThemedText style={styles.measureValue}>{m.valor}</ThemedText>
+              )}
+            >
+              <View style={styles.card}>
+                <View style={styles.cardHeaderRow}>
+                  <View style={styles.cardHeaderLeft}>
+                    <View
+                      style={[styles.iconCircle, { backgroundColor: m.tint }]}
+                    >
+                      {m.icon}
+                    </View>
+                    <View>
+                      <ThemedText style={styles.cardTitle}>{m.tipo}</ThemedText>
+                      <ThemedText style={styles.cardMeta}>{m.fecha}</ThemedText>
+                    </View>
+                  </View>
+                  <ThemedText style={styles.measureValue}>{m.valor}</ThemedText>
+                </View>
               </View>
-            </View>
+            </Swipeable>
           ))}
         </View>
       </ScrollView>
@@ -236,4 +274,22 @@ const styles = StyleSheet.create({
   cardTitle: { fontSize: 14, fontWeight: "600", color: "#111827" },
   cardMeta: { marginTop: 2, fontSize: 12, color: "#6B7280" },
   measureValue: { fontSize: 18, fontWeight: "700", color: "#111827" },
+  actionsRow: {
+    flexDirection: "row",
+    height: "100%",
+    alignItems: "center",
+    gap: 6,
+    paddingHorizontal: 10,
+  },
+  actionButton: {
+    width: 64,
+    height: "100%",
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  actionIcon: { color: "#FFFFFF", fontSize: 18, fontWeight: "700" },
+  actionFavorite: { backgroundColor: "#455581" },
+  actionEdit: { backgroundColor: "#F59E0B" },
+  actionDelete: { backgroundColor: "#EF4444" },
 });
