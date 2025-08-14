@@ -3,16 +3,12 @@ import { ThemedView } from "@/components/ThemedView";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   AlertTriangle,
-  Calendar,
-  Check,
   ChevronLeft,
   ChevronRight,
   Edit2,
   FileText,
   Image as ImageIcon,
   Pill,
-  Stethoscope,
-  Syringe,
   User,
 } from "lucide-react-native";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -64,7 +60,7 @@ export default function MemberProfileScreen() {
                   Género: Femenino
                 </ThemedText>
                 <ThemedText style={styles.metaText}>
-                  Nacida: 15 de Marzo, 2016
+                  Nacimiento: 15 de Marzo, 2016
                 </ThemedText>
                 <ThemedText style={styles.metaText}>
                   Tipo de Sangre: O+
@@ -99,61 +95,16 @@ export default function MemberProfileScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Health Summary */}
-        <View style={styles.section}>
-          <ThemedText style={styles.sectionTitle}>Resumen de Salud</ThemedText>
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}>
-                <Check size={18} color="#455581" />
-              </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.cardTitle}>Vacunas al Día</ThemedText>
-                <ThemedText style={styles.cardMeta}>
-                  Próxima: Vacuna anual de gripe
-                </ThemedText>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#F6E8F0" }]}>
-                <AlertTriangle size={18} color="#CB4E8B" />
-              </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.cardTitle}>
-                  Alergia: Cacahuetes
-                </ThemedText>
-                <ThemedText style={styles.cardMeta}>
-                  Reacción severa - llevar EpiPen
-                </ThemedText>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}>
-                <Calendar size={18} color="#455581" />
-              </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.cardTitle}>
-                  Próximo Chequeo
-                </ThemedText>
-                <ThemedText style={styles.cardMeta}>
-                  15 de Abril, 2024 a las 2:00 PM
-                </ThemedText>
-              </View>
-            </View>
-          </View>
-        </View>
-
         {/* Registros Favoritos */}
         <View style={styles.section}>
-          <ThemedText style={styles.sectionTitle}>
-            Registros Favoritos
-          </ThemedText>
+          <View style={styles.sectionHeaderRow}>
+            <ThemedText style={styles.sectionTitle}>
+              Registros Favoritos
+            </ThemedText>
+            <TouchableOpacity activeOpacity={0.8}>
+              <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
+            </TouchableOpacity>
+          </View>
           <View style={styles.card}>
             <View style={styles.cardRow}>
               <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
@@ -225,54 +176,6 @@ export default function MemberProfileScreen() {
                 </ThemedText>
               </View>
               <ChevronRight size={20} color="#9CA3AF" />
-            </View>
-          </View>
-        </View>
-
-        {/* Recent Records */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeaderRow}>
-            <ThemedText style={styles.sectionTitle}>
-              Registros Recientes
-            </ThemedText>
-            <TouchableOpacity activeOpacity={0.8}>
-              <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View
-                style={[styles.iconCircleSm, { backgroundColor: "#E9EEF6" }]}
-              >
-                <Syringe size={16} color="#455581" />
-              </View>
-              <View>
-                <ThemedText style={styles.recordTitle}>
-                  Vacunación Anual
-                </ThemedText>
-                <ThemedText style={styles.recordMeta}>
-                  1 de Marzo, 2024
-                </ThemedText>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View
-                style={[styles.iconCircleSm, { backgroundColor: "#E9EEF6" }]}
-              >
-                <Stethoscope size={16} color="#455581" />
-              </View>
-              <View>
-                <ThemedText style={styles.recordTitle}>
-                  Chequeo de Rutina
-                </ThemedText>
-                <ThemedText style={styles.recordMeta}>
-                  20 de Febrero, 2024
-                </ThemedText>
-              </View>
             </View>
           </View>
         </View>

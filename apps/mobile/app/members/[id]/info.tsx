@@ -2,9 +2,6 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
-  AlertTriangle,
-  Calendar,
-  Check,
   ChevronLeft,
   Mail,
   MapPin,
@@ -15,7 +12,8 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function MemberInfoScreen() {
   const router = useRouter();
-  const { id } = useLocalSearchParams<{ id: string }>();
+  useLocalSearchParams<{ id: string }>();
+  const displayId = "123456789123";
 
   return (
     <ThemedView style={styles.screen}>
@@ -34,7 +32,9 @@ export default function MemberInfoScreen() {
               <ThemedText style={styles.headerTitle}>
                 Información de Emma Johnson
               </ThemedText>
-              <ThemedText style={styles.headerSubtitle}>ID: {id}</ThemedText>
+              <ThemedText style={styles.headerSubtitle}>
+                ID: {displayId}
+              </ThemedText>
             </View>
             <View style={{ width: 40 }} />
           </View>
@@ -44,40 +44,77 @@ export default function MemberInfoScreen() {
         <View style={styles.section}>
           <ThemedText style={styles.sectionTitle}>Resumen de salud</ThemedText>
           <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}>
-                <Check size={18} color="#455581" />
-              </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.cardTitle}>Vacunas al día</ThemedText>
-                <ThemedText style={styles.cardMeta}>
-                  Próxima: Gripe (Oct 2025)
-                </ThemedText>
-              </View>
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>Apodo</ThemedText>
+              <ThemedText style={styles.fieldValue}>Em</ThemedText>
             </View>
             <View style={styles.divider} />
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}>
-                <Calendar size={18} color="#455581" />
-              </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.cardTitle}>Chequeo anual</ThemedText>
-                <ThemedText style={styles.cardMeta}>
-                  15 de Abril, 2024 — 2:00 PM
-                </ThemedText>
-              </View>
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>Nombre</ThemedText>
+              <ThemedText style={styles.fieldValue}>Maria</ThemedText>
             </View>
             <View style={styles.divider} />
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#F6E8F0" }]}>
-                <AlertTriangle size={18} color="#CB4E8B" />
-              </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.cardTitle}>Alergia</ThemedText>
-                <ThemedText style={styles.cardMeta}>
-                  Cacahuetes — Reacción severa (EpiPen)
-                </ThemedText>
-              </View>
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>Apellido</ThemedText>
+              <ThemedText style={styles.fieldValue}>Lafuente</ThemedText>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>Género</ThemedText>
+              <ThemedText style={styles.fieldValue}>mujer</ThemedText>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>
+                Fecha de nacimiento
+              </ThemedText>
+              <ThemedText style={styles.fieldValue}>12-02-1976</ThemedText>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>Grupo sanguíneo</ThemedText>
+              <ThemedText style={styles.fieldValue}>O</ThemedText>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>RH</ThemedText>
+              <ThemedText style={styles.fieldValue}>+</ThemedText>
+            </View>
+
+            <View style={styles.divider} />
+            <View style={styles.textareaBlock}>
+              <ThemedText style={styles.fieldLabel}>
+                Alergias / Intolerancias
+              </ThemedText>
+              <ThemedText style={styles.textareaValue}>
+                Cacahuetes — reacción severa (EpiPen)
+              </ThemedText>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.textareaBlock}>
+              <ThemedText style={styles.fieldLabel}>Medicación</ThemedText>
+              <ThemedText style={styles.textareaValue}>
+                Salbutamol inhalador 100 mcg según necesidad; Cetirizina 5 mg
+                por la noche durante primavera.
+              </ThemedText>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.textareaBlock}>
+              <ThemedText style={styles.fieldLabel}>
+                Enfermedades importantes
+              </ThemedText>
+              <ThemedText style={styles.textareaValue}>
+                Asma leve persistente desde la infancia. Alergia alimentaria a
+                cacahuetes.
+              </ThemedText>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.textareaBlock}>
+              <ThemedText style={styles.fieldLabel}>Antecedentes</ThemedText>
+              <ThemedText style={styles.textareaValue}>
+                Cesárea a término sin complicaciones. Hospitalización por
+                bronquiolitis a los 2 años.
+              </ThemedText>
             </View>
           </View>
         </View>
@@ -255,6 +292,27 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
     gap: 12,
+  },
+  fieldRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  fieldLabel: {
+    fontSize: 14,
+    color: "#6B7280",
+  },
+  fieldValue: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#111827",
+  },
+  textareaBlock: {
+    gap: 6,
+  },
+  textareaValue: {
+    fontSize: 14,
+    color: "#111827",
   },
   cardRow: {
     flexDirection: "row",
