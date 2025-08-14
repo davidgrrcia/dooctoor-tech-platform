@@ -11,6 +11,7 @@ import {
   Pill,
   User,
 } from "lucide-react-native";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function MemberProfileScreen() {
@@ -20,6 +21,9 @@ export default function MemberProfileScreen() {
   const handleOpenInfo = () => {
     router.push(`/members/${id}/info`);
   };
+  const [activeChip, setActiveChip] = useState<
+    "Registros" | "Mediciones" | "Medicamentos" | "Vacunas"
+  >("Registros");
 
   return (
     <ThemedView style={styles.screen}>
@@ -103,14 +107,22 @@ export default function MemberProfileScreen() {
             contentContainerStyle={styles.chipsRow}
           >
             {["Registros", "Mediciones", "Medicamentos", "Vacunas"].map(
-              (label, idx) => (
+              (label) => (
                 <TouchableOpacity
                   key={label}
-                  style={[styles.chip, idx === 0 && styles.chipActive]}
+                  style={[
+                    styles.chip,
+                    activeChip === label && styles.chipActive,
+                  ]}
                   activeOpacity={0.8}
+                  onPress={() => setActiveChip(label as typeof activeChip)}
                 >
                   <ThemedText
-                    style={idx === 0 ? styles.chipActiveText : styles.chipText}
+                    style={
+                      activeChip === label
+                        ? styles.chipActiveText
+                        : styles.chipText
+                    }
                   >
                     {label}
                   </ThemedText>
@@ -120,93 +132,207 @@ export default function MemberProfileScreen() {
           </ScrollView>
         </View>
 
-        {/* Registros Favoritos */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeaderRow}>
-            <ThemedText style={styles.sectionTitle}>
-              Registros Favoritos
-            </ThemedText>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => router.push(`/members/${id}/records`)}
-            >
-              <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
-                <FileText size={18} color="#455581" />
-              </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.recordTitle}>
-                  Plan de Tratamiento
+        {activeChip === "Registros" && (
+          <>
+            {/* Registros Favoritos */}
+            <View style={styles.section}>
+              <View style={styles.sectionHeaderRow}>
+                <ThemedText style={styles.sectionTitle}>
+                  Registros Favoritos
                 </ThemedText>
-                <ThemedText style={styles.recordMeta}>
-                  Medicina General • 12 de Mar, 2024
-                </ThemedText>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => router.push(`/members/${id}/records`)}
+                >
+                  <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
+                </TouchableOpacity>
               </View>
-              <ChevronRight size={20} color="#9CA3AF" />
-            </View>
-          </View>
+              <View style={styles.card}>
+                <View style={styles.cardRow}>
+                  <View
+                    style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
+                  >
+                    <FileText size={18} color="#455581" />
+                  </View>
+                  <View style={styles.cardTextBlock}>
+                    <ThemedText style={styles.recordTitle}>
+                      Plan de Tratamiento
+                    </ThemedText>
+                    <ThemedText style={styles.recordMeta}>
+                      Medicina General • 12 de Mar, 2024
+                    </ThemedText>
+                  </View>
+                  <ChevronRight size={20} color="#9CA3AF" />
+                </View>
+              </View>
 
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}>
-                <ImageIcon size={18} color="#455581" />
+              <View style={styles.card}>
+                <View style={styles.cardRow}>
+                  <View
+                    style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
+                  >
+                    <ImageIcon size={18} color="#455581" />
+                  </View>
+                  <View style={styles.cardTextBlock}>
+                    <ThemedText style={styles.recordTitle}>
+                      Resultados Hematología
+                    </ThemedText>
+                    <ThemedText style={styles.recordMeta}>
+                      Hematología • 5 de Mar, 2024
+                    </ThemedText>
+                  </View>
+                  <ChevronRight size={20} color="#9CA3AF" />
+                </View>
               </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.recordTitle}>
-                  Resultados Hematología
-                </ThemedText>
-                <ThemedText style={styles.recordMeta}>
-                  Hematología • 5 de Mar, 2024
-                </ThemedText>
-              </View>
-              <ChevronRight size={20} color="#9CA3AF" />
             </View>
-          </View>
-        </View>
 
-        {/* Registros Crónicos / Permanentes */}
-        <View style={styles.section}>
-          <ThemedText style={styles.sectionTitle}>
-            Registros Crónicos / Permanentes
-          </ThemedText>
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#F6E8F0" }]}>
-                <AlertTriangle size={18} color="#CB4E8B" />
+            {/* Registros Crónicos / Permanentes */}
+            <View style={styles.section}>
+              <ThemedText style={styles.sectionTitle}>
+                Registros Crónicos / Permanentes
+              </ThemedText>
+              <View style={styles.card}>
+                <View style={styles.cardRow}>
+                  <View
+                    style={[styles.iconCircle, { backgroundColor: "#F6E8F0" }]}
+                  >
+                    <AlertTriangle size={18} color="#CB4E8B" />
+                  </View>
+                  <View style={styles.cardTextBlock}>
+                    <ThemedText style={styles.recordTitle}>
+                      Alergia: Cacahuetes
+                    </ThemedText>
+                    <ThemedText style={styles.recordMeta}>
+                      Alergología • Permanente
+                    </ThemedText>
+                  </View>
+                  <ChevronRight size={20} color="#9CA3AF" />
+                </View>
               </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.recordTitle}>
-                  Alergia: Cacahuetes
-                </ThemedText>
-                <ThemedText style={styles.recordMeta}>
-                  Alergología • Permanente
-                </ThemedText>
-              </View>
-              <ChevronRight size={20} color="#9CA3AF" />
-            </View>
-          </View>
 
-          <View style={styles.card}>
-            <View style={styles.cardRow}>
-              <View style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}>
-                <Pill size={18} color="#455581" />
+              <View style={styles.card}>
+                <View style={styles.cardRow}>
+                  <View
+                    style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}
+                  >
+                    <Pill size={18} color="#455581" />
+                  </View>
+                  <View style={styles.cardTextBlock}>
+                    <ThemedText style={styles.recordTitle}>
+                      Asma — Plan de Acción
+                    </ThemedText>
+                    <ThemedText style={styles.recordMeta}>
+                      Neumología • Revisión: 20 de Feb, 2024
+                    </ThemedText>
+                  </View>
+                  <ChevronRight size={20} color="#9CA3AF" />
+                </View>
               </View>
-              <View style={styles.cardTextBlock}>
-                <ThemedText style={styles.recordTitle}>
-                  Asma — Plan de Acción
-                </ThemedText>
-                <ThemedText style={styles.recordMeta}>
-                  Neumología • Revisión: 20 de Feb, 2024
-                </ThemedText>
+            </View>
+          </>
+        )}
+
+        {activeChip === "Mediciones" && (
+          <View style={styles.section}>
+            <View style={styles.sectionHeaderRow}>
+              <ThemedText style={styles.sectionTitle}>
+                Mediciones Favoritas
+              </ThemedText>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => router.push(`/members/${id}/measurements`)}
+              >
+                <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.card}>
+              <View style={styles.cardRow}>
+                <View
+                  style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
+                >
+                  <FileText size={18} color="#455581" />
+                </View>
+                <View style={styles.cardTextBlock}>
+                  <ThemedText style={styles.recordTitle}>
+                    Presión arterial
+                  </ThemedText>
+                  <ThemedText style={styles.recordMeta}>
+                    120/78 mmHg • 12 de Mar, 2024
+                  </ThemedText>
+                </View>
+                <ChevronRight size={20} color="#9CA3AF" />
               </View>
-              <ChevronRight size={20} color="#9CA3AF" />
             </View>
           </View>
-        </View>
+        )}
+
+        {activeChip === "Medicamentos" && (
+          <View style={styles.section}>
+            <View style={styles.sectionHeaderRow}>
+              <ThemedText style={styles.sectionTitle}>
+                Medicamentos Favoritos
+              </ThemedText>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => router.push(`/members/${id}/medications`)}
+              >
+                <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.card}>
+              <View style={styles.cardRow}>
+                <View
+                  style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
+                >
+                  <Pill size={18} color="#455581" />
+                </View>
+                <View style={styles.cardTextBlock}>
+                  <ThemedText style={styles.recordTitle}>
+                    Salbutamol inhalador
+                  </ThemedText>
+                  <ThemedText style={styles.recordMeta}>
+                    Según necesidad • Último uso 10 de Mar
+                  </ThemedText>
+                </View>
+                <ChevronRight size={20} color="#9CA3AF" />
+              </View>
+            </View>
+          </View>
+        )}
+
+        {activeChip === "Vacunas" && (
+          <View style={styles.section}>
+            <View style={styles.sectionHeaderRow}>
+              <ThemedText style={styles.sectionTitle}>
+                Vacunas Favoritas
+              </ThemedText>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => router.push(`/members/${id}/vaccines`)}
+              >
+                <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.card}>
+              <View style={styles.cardRow}>
+                <View
+                  style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
+                >
+                  <FileText size={18} color="#455581" />
+                </View>
+                <View style={styles.cardTextBlock}>
+                  <ThemedText style={styles.recordTitle}>
+                    Influenza (Gripe)
+                  </ThemedText>
+                  <ThemedText style={styles.recordMeta}>
+                    Anual • Última 2024
+                  </ThemedText>
+                </View>
+                <ChevronRight size={20} color="#9CA3AF" />
+              </View>
+            </View>
+          </View>
+        )}
       </ScrollView>
     </ThemedView>
   );
