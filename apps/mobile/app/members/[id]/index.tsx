@@ -1,6 +1,6 @@
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
   AlertTriangle,
   ChevronLeft,
@@ -10,9 +10,9 @@ import {
   Image as ImageIcon,
   Pill,
   User,
-} from "lucide-react-native";
-import React, { useState } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+} from 'lucide-react-native';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function MemberProfileScreen() {
   const router = useRouter();
@@ -21,9 +21,7 @@ export default function MemberProfileScreen() {
   const handleOpenInfo = () => {
     router.push(`/members/${id}/info`);
   };
-  const [activeChip, setActiveChip] = useState<
-    "Registros" | "Mediciones" | "Medicamentos" | "Vacunas"
-  >("Registros");
+  const [activeChip, setActiveChip] = useState<'Registros' | 'Mediciones' | 'Medicamentos' | 'Vacunas'>('Registros');
 
   return (
     <ThemedView style={styles.screen}>
@@ -31,11 +29,7 @@ export default function MemberProfileScreen() {
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.headerRow}>
-            <TouchableOpacity
-              style={styles.backBtn}
-              activeOpacity={0.8}
-              onPress={() => router.back()}
-            >
+            <TouchableOpacity style={styles.backBtn} activeOpacity={0.8} onPress={() => router.back()}>
               <ChevronLeft size={18} color="#4B5563" />
             </TouchableOpacity>
             <View style={styles.headerTitleBlock}>
@@ -47,11 +41,7 @@ export default function MemberProfileScreen() {
           </View>
 
           {/* Profile Card */}
-          <TouchableOpacity
-            style={styles.profileCard}
-            activeOpacity={0.85}
-            onPress={handleOpenInfo}
-          >
+          <TouchableOpacity style={styles.profileCard} activeOpacity={0.85} onPress={handleOpenInfo}>
             <View style={styles.profileRow}>
               <View style={styles.avatarCircle}>
                 <User size={32} color="#6B7280" />
@@ -60,15 +50,9 @@ export default function MemberProfileScreen() {
                 <View style={styles.nameRow}>
                   <ThemedText style={styles.nameText}>Emma Johnson</ThemedText>
                 </View>
-                <ThemedText style={styles.metaText}>
-                  Género: Femenino
-                </ThemedText>
-                <ThemedText style={styles.metaText}>
-                  Nacimiento: 15 de Marzo, 2016
-                </ThemedText>
-                <ThemedText style={styles.metaText}>
-                  Tipo de Sangre: O+
-                </ThemedText>
+                <ThemedText style={styles.metaText}>Género: Femenino</ThemedText>
+                <ThemedText style={styles.metaText}>Nacimiento: 15 de Marzo, 2016</ThemedText>
+                <ThemedText style={styles.metaText}>Tipo de Sangre: O+</ThemedText>
               </View>
             </View>
 
@@ -89,11 +73,7 @@ export default function MemberProfileScreen() {
             </View>
 
             {/* Chevron Indicator */}
-            <TouchableOpacity
-              style={styles.cardChevronBtn}
-              onPress={handleOpenInfo}
-              activeOpacity={0.7}
-            >
+            <TouchableOpacity style={styles.cardChevronBtn} onPress={handleOpenInfo} activeOpacity={0.7}>
               <ChevronRight size={18} color="#6B7280" />
             </TouchableOpacity>
           </TouchableOpacity>
@@ -101,66 +81,38 @@ export default function MemberProfileScreen() {
 
         {/* Quick Filters */}
         <View style={styles.chipsBar}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.chipsRow}
-          >
-            {["Registros", "Mediciones", "Medicamentos", "Vacunas"].map(
-              (label) => (
-                <TouchableOpacity
-                  key={label}
-                  style={[
-                    styles.chip,
-                    activeChip === label && styles.chipActive,
-                  ]}
-                  activeOpacity={0.8}
-                  onPress={() => setActiveChip(label as typeof activeChip)}
-                >
-                  <ThemedText
-                    style={
-                      activeChip === label
-                        ? styles.chipActiveText
-                        : styles.chipText
-                    }
-                  >
-                    {label}
-                  </ThemedText>
-                </TouchableOpacity>
-              ),
-            )}
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chipsRow}>
+            {['Registros', 'Mediciones', 'Medicamentos', 'Vacunas'].map((label) => (
+              <TouchableOpacity
+                key={label}
+                style={[styles.chip, activeChip === label && styles.chipActive]}
+                activeOpacity={0.8}
+                onPress={() => setActiveChip(label as typeof activeChip)}
+              >
+                <ThemedText style={activeChip === label ? styles.chipActiveText : styles.chipText}>{label}</ThemedText>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </View>
 
-        {activeChip === "Registros" && (
+        {activeChip === 'Registros' && (
           <>
             {/* Registros Favoritos */}
             <View style={styles.section}>
               <View style={styles.sectionHeaderRow}>
-                <ThemedText style={styles.sectionTitle}>
-                  Registros Favoritos
-                </ThemedText>
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => router.push(`/members/${id}/records`)}
-                >
+                <ThemedText style={styles.sectionTitle}>Registros Favoritos</ThemedText>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => router.push(`/members/${id}/records`)}>
                   <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
                 </TouchableOpacity>
               </View>
               <View style={styles.card}>
                 <View style={styles.cardRow}>
-                  <View
-                    style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
-                  >
+                  <View style={[styles.iconCircle, { backgroundColor: '#F3F4F6' }]}>
                     <FileText size={18} color="#455581" />
                   </View>
                   <View style={styles.cardTextBlock}>
-                    <ThemedText style={styles.recordTitle}>
-                      Plan de Tratamiento
-                    </ThemedText>
-                    <ThemedText style={styles.recordMeta}>
-                      Medicina General • 12 de Mar, 2024
-                    </ThemedText>
+                    <ThemedText style={styles.recordTitle}>Plan de Tratamiento</ThemedText>
+                    <ThemedText style={styles.recordMeta}>Medicina General • 12 de Mar, 2024</ThemedText>
                   </View>
                   <ChevronRight size={20} color="#9CA3AF" />
                 </View>
@@ -168,18 +120,12 @@ export default function MemberProfileScreen() {
 
               <View style={styles.card}>
                 <View style={styles.cardRow}>
-                  <View
-                    style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
-                  >
+                  <View style={[styles.iconCircle, { backgroundColor: '#F3F4F6' }]}>
                     <ImageIcon size={18} color="#455581" />
                   </View>
                   <View style={styles.cardTextBlock}>
-                    <ThemedText style={styles.recordTitle}>
-                      Resultados Hematología
-                    </ThemedText>
-                    <ThemedText style={styles.recordMeta}>
-                      Hematología • 5 de Mar, 2024
-                    </ThemedText>
+                    <ThemedText style={styles.recordTitle}>Resultados Hematología</ThemedText>
+                    <ThemedText style={styles.recordMeta}>Hematología • 5 de Mar, 2024</ThemedText>
                   </View>
                   <ChevronRight size={20} color="#9CA3AF" />
                 </View>
@@ -188,23 +134,15 @@ export default function MemberProfileScreen() {
 
             {/* Registros Crónicos / Permanentes */}
             <View style={styles.section}>
-              <ThemedText style={styles.sectionTitle}>
-                Registros Crónicos / Permanentes
-              </ThemedText>
+              <ThemedText style={styles.sectionTitle}>Registros Crónicos / Permanentes</ThemedText>
               <View style={styles.card}>
                 <View style={styles.cardRow}>
-                  <View
-                    style={[styles.iconCircle, { backgroundColor: "#F6E8F0" }]}
-                  >
+                  <View style={[styles.iconCircle, { backgroundColor: '#F6E8F0' }]}>
                     <AlertTriangle size={18} color="#CB4E8B" />
                   </View>
                   <View style={styles.cardTextBlock}>
-                    <ThemedText style={styles.recordTitle}>
-                      Alergia: Cacahuetes
-                    </ThemedText>
-                    <ThemedText style={styles.recordMeta}>
-                      Alergología • Permanente
-                    </ThemedText>
+                    <ThemedText style={styles.recordTitle}>Alergia: Cacahuetes</ThemedText>
+                    <ThemedText style={styles.recordMeta}>Alergología • Permanente</ThemedText>
                   </View>
                   <ChevronRight size={20} color="#9CA3AF" />
                 </View>
@@ -212,18 +150,12 @@ export default function MemberProfileScreen() {
 
               <View style={styles.card}>
                 <View style={styles.cardRow}>
-                  <View
-                    style={[styles.iconCircle, { backgroundColor: "#E9EEF6" }]}
-                  >
+                  <View style={[styles.iconCircle, { backgroundColor: '#E9EEF6' }]}>
                     <Pill size={18} color="#455581" />
                   </View>
                   <View style={styles.cardTextBlock}>
-                    <ThemedText style={styles.recordTitle}>
-                      Asma — Plan de Acción
-                    </ThemedText>
-                    <ThemedText style={styles.recordMeta}>
-                      Neumología • Revisión: 20 de Feb, 2024
-                    </ThemedText>
+                    <ThemedText style={styles.recordTitle}>Asma — Plan de Acción</ThemedText>
+                    <ThemedText style={styles.recordMeta}>Neumología • Revisión: 20 de Feb, 2024</ThemedText>
                   </View>
                   <ChevronRight size={20} color="#9CA3AF" />
                 </View>
@@ -232,33 +164,22 @@ export default function MemberProfileScreen() {
           </>
         )}
 
-        {activeChip === "Mediciones" && (
+        {activeChip === 'Mediciones' && (
           <View style={styles.section}>
             <View style={styles.sectionHeaderRow}>
-              <ThemedText style={styles.sectionTitle}>
-                Mediciones Favoritas
-              </ThemedText>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => router.push(`/members/${id}/measurements`)}
-              >
+              <ThemedText style={styles.sectionTitle}>Mediciones Favoritas</ThemedText>
+              <TouchableOpacity activeOpacity={0.8} onPress={() => router.push(`/members/${id}/measurements`)}>
                 <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
               </TouchableOpacity>
             </View>
             <View style={styles.card}>
               <View style={styles.cardRow}>
-                <View
-                  style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
-                >
+                <View style={[styles.iconCircle, { backgroundColor: '#F3F4F6' }]}>
                   <FileText size={18} color="#455581" />
                 </View>
                 <View style={styles.cardTextBlock}>
-                  <ThemedText style={styles.recordTitle}>
-                    Presión arterial
-                  </ThemedText>
-                  <ThemedText style={styles.recordMeta}>
-                    120/78 mmHg • 12 de Mar, 2024
-                  </ThemedText>
+                  <ThemedText style={styles.recordTitle}>Presión arterial</ThemedText>
+                  <ThemedText style={styles.recordMeta}>120/78 mmHg • 12 de Mar, 2024</ThemedText>
                 </View>
                 <ChevronRight size={20} color="#9CA3AF" />
               </View>
@@ -266,33 +187,22 @@ export default function MemberProfileScreen() {
           </View>
         )}
 
-        {activeChip === "Medicamentos" && (
+        {activeChip === 'Medicamentos' && (
           <View style={styles.section}>
             <View style={styles.sectionHeaderRow}>
-              <ThemedText style={styles.sectionTitle}>
-                Medicamentos Favoritos
-              </ThemedText>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => router.push(`/members/${id}/medications`)}
-              >
+              <ThemedText style={styles.sectionTitle}>Medicamentos Favoritos</ThemedText>
+              <TouchableOpacity activeOpacity={0.8} onPress={() => router.push(`/members/${id}/medications`)}>
                 <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
               </TouchableOpacity>
             </View>
             <View style={styles.card}>
               <View style={styles.cardRow}>
-                <View
-                  style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
-                >
+                <View style={[styles.iconCircle, { backgroundColor: '#F3F4F6' }]}>
                   <Pill size={18} color="#455581" />
                 </View>
                 <View style={styles.cardTextBlock}>
-                  <ThemedText style={styles.recordTitle}>
-                    Salbutamol inhalador
-                  </ThemedText>
-                  <ThemedText style={styles.recordMeta}>
-                    Según necesidad • Último uso 10 de Mar
-                  </ThemedText>
+                  <ThemedText style={styles.recordTitle}>Salbutamol inhalador</ThemedText>
+                  <ThemedText style={styles.recordMeta}>Según necesidad • Último uso 10 de Mar</ThemedText>
                 </View>
                 <ChevronRight size={20} color="#9CA3AF" />
               </View>
@@ -300,33 +210,22 @@ export default function MemberProfileScreen() {
           </View>
         )}
 
-        {activeChip === "Vacunas" && (
+        {activeChip === 'Vacunas' && (
           <View style={styles.section}>
             <View style={styles.sectionHeaderRow}>
-              <ThemedText style={styles.sectionTitle}>
-                Vacunas Favoritas
-              </ThemedText>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => router.push(`/members/${id}/vaccines`)}
-              >
+              <ThemedText style={styles.sectionTitle}>Vacunas Favoritas</ThemedText>
+              <TouchableOpacity activeOpacity={0.8} onPress={() => router.push(`/members/${id}/vaccines`)}>
                 <ThemedText style={styles.linkButton}>Ver Todos</ThemedText>
               </TouchableOpacity>
             </View>
             <View style={styles.card}>
               <View style={styles.cardRow}>
-                <View
-                  style={[styles.iconCircle, { backgroundColor: "#F3F4F6" }]}
-                >
+                <View style={[styles.iconCircle, { backgroundColor: '#F3F4F6' }]}>
                   <FileText size={18} color="#455581" />
                 </View>
                 <View style={styles.cardTextBlock}>
-                  <ThemedText style={styles.recordTitle}>
-                    Influenza (Gripe)
-                  </ThemedText>
-                  <ThemedText style={styles.recordMeta}>
-                    Anual • Última 2024
-                  </ThemedText>
+                  <ThemedText style={styles.recordTitle}>Influenza (Gripe)</ThemedText>
+                  <ThemedText style={styles.recordMeta}>Anual • Última 2024</ThemedText>
                 </View>
                 <ChevronRight size={20} color="#9CA3AF" />
               </View>
@@ -341,31 +240,31 @@ export default function MemberProfileScreen() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: "#F9FAFB",
+    backgroundColor: '#F9FAFB',
   },
   scrollContent: {
     paddingBottom: 24,
   },
   header: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     paddingTop: 24,
     paddingBottom: 16,
     paddingHorizontal: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#F3F4F6",
+    borderBottomColor: '#F3F4F6',
   },
   headerRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 16,
   },
   backBtn: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   headerTitleBlock: {
     flex: 1,
@@ -373,101 +272,101 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 22,
-    fontWeight: "700",
-    color: "#111827",
+    fontWeight: '700',
+    color: '#111827',
   },
   headerSubtitle: {
     marginTop: 2,
     fontSize: 14,
-    color: "#4B5563",
+    color: '#4B5563',
   },
   editBtn: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#FD8006",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FD8006',
   },
   profileCard: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 16,
     borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.04)",
-    shadowColor: "#000",
+    borderColor: 'rgba(0,0,0,0.04)',
+    shadowColor: '#000',
     shadowOpacity: 0.08,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
-    position: "relative",
+    position: 'relative',
   },
   cardChevronBtn: {
-    position: "absolute",
+    position: 'absolute',
     top: 12,
     right: 12,
     width: 28,
     height: 28,
     borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#F3F4F6",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F3F4F6',
   },
   profileRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 8,
   },
   avatarCircle: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: "#E5E7EB",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#E5E7EB',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginRight: 16,
   },
   profileTextBlock: {
     flex: 1,
   },
   nameRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
     marginBottom: 4,
   },
   nameText: {
     fontSize: 18,
-    fontWeight: "700",
-    color: "#111827",
+    fontWeight: '700',
+    color: '#111827',
   },
   statusDot: {
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: "#455581",
+    backgroundColor: '#455581',
   },
   metaText: {
     fontSize: 14,
-    color: "#4B5563",
+    color: '#4B5563',
   },
   statsGrid: {
     marginTop: 12,
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 12,
   },
   statItem: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   statValue: {
     fontSize: 16,
-    fontWeight: "700",
-    color: "#111827",
+    fontWeight: '700',
+    color: '#111827',
   },
   statLabel: {
     fontSize: 12,
-    color: "#6B7280",
+    color: '#6B7280',
   },
   section: {
     paddingHorizontal: 24,
@@ -475,12 +374,12 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   sectionHeaderRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   chipsBar: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     paddingVertical: 10,
     paddingHorizontal: 16,
   },
@@ -491,61 +390,61 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 999,
-    backgroundColor: "#F3F4F6",
+    backgroundColor: '#F3F4F6',
   },
   chipText: {
-    color: "#4B5563",
+    color: '#4B5563',
     fontSize: 13,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   chipActive: {
-    backgroundColor: "#FD8006",
+    backgroundColor: '#FD8006',
   },
   chipActiveText: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 13,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#111827",
+    fontWeight: '600',
+    color: '#111827',
   },
   linkButton: {
     fontSize: 13,
-    fontWeight: "600",
-    color: "#FD8006",
+    fontWeight: '600',
+    color: '#FD8006',
   },
   card: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 14,
     borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.04)",
-    shadowColor: "#000",
+    borderColor: 'rgba(0,0,0,0.04)',
+    shadowColor: '#000',
     shadowOpacity: 0.08,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
   },
   cardRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 12,
   },
   iconCircle: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   iconCircleSm: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     marginRight: 12,
   },
   cardTextBlock: {
@@ -553,20 +452,20 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 14,
-    fontWeight: "600",
-    color: "#111827",
+    fontWeight: '600',
+    color: '#111827',
   },
   cardMeta: {
     fontSize: 12,
-    color: "#6B7280",
+    color: '#6B7280',
   },
   recordTitle: {
     fontSize: 14,
-    fontWeight: "600",
-    color: "#111827",
+    fontWeight: '600',
+    color: '#111827',
   },
   recordMeta: {
     fontSize: 12,
-    color: "#6B7280",
+    color: '#6B7280',
   },
 });

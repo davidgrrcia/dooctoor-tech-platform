@@ -1,24 +1,24 @@
-import { Tabs } from "expo-router";
-import React from "react";
-import { Platform } from "react-native";
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { Platform } from 'react-native';
 
-import { HapticTab } from "@/components/HapticTab";
-import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Calendar, Home, User } from "lucide-react-native";
+import { HapticTab } from '@/components/HapticTab';
+import TabBarBackground from '@/components/ui/TabBarBackground';
+import { Calendar, Home, User } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#FD8006",
-        tabBarInactiveTintColor: "#9CA3AF",
+        tabBarActiveTintColor: '#FD8006',
+        tabBarInactiveTintColor: '#9CA3AF',
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
-            position: "absolute",
+            position: 'absolute',
           },
           default: {},
         }),
@@ -27,7 +27,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Inicio",
+          title: 'Inicio',
           tabBarIcon: ({ color }) => <Home size={24} color={color as string} />,
         }}
       />
@@ -35,16 +35,14 @@ export default function TabLayout() {
       <Tabs.Screen
         name="appointments"
         options={{
-          title: "Agenda",
-          tabBarIcon: ({ color }) => (
-            <Calendar size={24} color={color as string} />
-          ),
+          title: 'Agenda',
+          tabBarIcon: ({ color }) => <Calendar size={24} color={color as string} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Perfil",
+          title: 'Perfil',
           tabBarIcon: ({ color }) => <User size={24} color={color as string} />,
         }}
       />
