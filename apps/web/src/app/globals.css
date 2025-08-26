@@ -1,26 +1,19 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "@repo/tailwind-config";
+@import "@repo/ui/globals.css";
 
+/* Override shadcn background color */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Ensure all buttons show pointer cursor */
+button,
+[role="button"] {
+  cursor: pointer;
 }
