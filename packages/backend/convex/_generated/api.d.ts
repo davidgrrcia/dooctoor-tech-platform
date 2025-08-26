@@ -8,8 +8,14 @@
  * @module
  */
 
-import type { ApiFromModules, FilterApi, FunctionReference } from 'convex/server';
-import type * as tasks from '../tasks.js';
+import type {
+  ApiFromModules,
+  FilterApi,
+  FunctionReference,
+} from "convex/server";
+import type * as notes from "../notes.js";
+import type * as openai from "../openai.js";
+import type * as utils from "../utils.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -20,7 +26,15 @@ import type * as tasks from '../tasks.js';
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  tasks: typeof tasks;
+  notes: typeof notes;
+  openai: typeof openai;
+  utils: typeof utils;
 }>;
-export declare const api: FilterApi<typeof fullApi, FunctionReference<any, 'public'>>;
-export declare const internal: FilterApi<typeof fullApi, FunctionReference<any, 'internal'>>;
+export declare const api: FilterApi<
+  typeof fullApi,
+  FunctionReference<any, "public">
+>;
+export declare const internal: FilterApi<
+  typeof fullApi,
+  FunctionReference<any, "internal">
+>;

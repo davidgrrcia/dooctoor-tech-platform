@@ -1,20 +1,19 @@
 {
-  "name": "@repo/backend",
+  "name": "@packages/backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "npx convex dev"
+    "dev": "convex dev",
+    "setup": "convex dev --until-success"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "convex": "^1.25.4"
+    "convex": "^1.25.0",
+    "openai": "^4.45.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.3",
-    "eslint": "^9.31.0",
-    "typescript": "5.8.2"
+    "@types/node": "20.17.32",
+    "typescript": "5.8.3"
   }
 }
