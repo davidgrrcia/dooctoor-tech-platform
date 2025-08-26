@@ -1,19 +1,19 @@
+import { useUser } from "@clerk/clerk-expo";
+import { AntDesign, Feather } from "@expo/vector-icons";
+import { api } from "@repo/backend/convex/_generated/api";
+import { useQuery } from "convex/react";
 import React, { useState } from "react";
 import {
+  Dimensions,
+  FlatList,
+  Image,
   StyleSheet,
-  View,
   Text,
   TextInput,
   TouchableOpacity,
-  Image,
-  FlatList,
-  Dimensions,
+  View,
 } from "react-native";
-import { Feather, AntDesign } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
-import { useAuth, useUser } from "@clerk/clerk-expo";
-import { api } from "@packages/backend/convex/_generated/api";
-import { useQuery } from "convex/react";
 
 const NotesDashboardScreen = ({ navigation }) => {
   const user = useUser();

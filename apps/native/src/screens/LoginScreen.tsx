@@ -1,8 +1,8 @@
-import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
-import { RFValue } from "react-native-responsive-fontsize";
 import { useOAuth } from "@clerk/clerk-expo";
 import { AntDesign } from "@expo/vector-icons";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const LoginScreen = ({ navigation }) => {
   const { startOAuthFlow: startGoogleAuthFlow } = useOAuth({

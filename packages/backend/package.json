@@ -1,5 +1,5 @@
 {
-  "name": "@packages/backend",
+  "name": "@repo/backend",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -9,8 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "convex": "^1.25.0",
-    "openai": "^4.45.0"
+    "convex": "^1.25.0"
   },
   "devDependencies": {
     "@types/node": "20.17.32",
