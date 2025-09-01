@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <header className="bg-background sticky top-0 z-10 flex flex-row items-center justify-between border-b-2 border-slate-200 p-4 dark:border-slate-800">
-        Convex + Next.js + WorkOS
+        Convex + Next.js + WorkOS 2
         {user && <UserMenu user={user} onSignOut={signOut} />}
       </header>
       <main className="flex flex-col gap-8 p-8">
