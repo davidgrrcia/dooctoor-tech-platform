@@ -168,13 +168,13 @@ importers:
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/eslint-config
+        version: link:../../tooling/eslint-config
       '@repo/tailwind-config':
         specifier: workspace:*
-        version: link:../../packages/tailwind-config
+        version: link:../../tooling/tailwind-config
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../tooling/typescript-config
       '@tailwindcss/postcss':
         specifier: ^4.1.5
         version: 4.1.12
@@ -219,42 +219,6 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
 
-  packages/eslint-config:
-    devDependencies:
-      '@eslint/js':
-        specifier: ^9.33.0
-        version: 9.34.0
-      '@next/eslint-plugin-next':
-        specifier: ^15.4.2
-        version: 15.5.0
-      eslint:
-        specifier: ^9.33.0
-        version: 9.34.0(jiti@2.5.1)
-      eslint-config-prettier:
-        specifier: ^10.1.1
-        version: 10.1.8(eslint@9.34.0(jiti@2.5.1))
-      eslint-plugin-only-warn:
-        specifier: ^1.1.0
-        version: 1.1.0
-      eslint-plugin-react:
-        specifier: ^7.37.4
-        version: 7.37.5(eslint@9.34.0(jiti@2.5.1))
-      eslint-plugin-react-hooks:
-        specifier: ^5.2.0
-        version: 5.2.0(eslint@9.34.0(jiti@2.5.1))
-      eslint-plugin-turbo:
-        specifier: ^2.5.0
-        version: 2.5.6(eslint@9.34.0(jiti@2.5.1))(turbo@2.5.2)
-      globals:
-        specifier: ^16.3.0
-        version: 16.3.0
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.2
-      typescript-eslint:
-        specifier: ^8.39.0
-        version: 8.41.0(eslint@9.34.0(jiti@2.5.1))(typescript@5.9.2)
-
   packages/logger:
     dependencies:
       pino:
@@ -263,18 +227,7 @@ importers:
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../typescript-config
-
-  packages/tailwind-config:
-    devDependencies:
-      postcss:
-        specifier: ^8.5.3
-        version: 8.5.3
-      tailwindcss:
-        specifier: ^4.1.5
-        version: 4.1.12
-
-  packages/typescript-config: {}
+        version: link:../../tooling/typescript-config
 
   packages/ui:
     dependencies:
@@ -344,13 +297,13 @@ importers:
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../../tooling/eslint-config
       '@repo/tailwind-config':
         specifier: workspace:*
-        version: link:../tailwind-config
+        version: link:../../tooling/tailwind-config
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../../tooling/typescript-config
       '@tailwindcss/postcss':
         specifier: ^4.1.11
         version: 4.1.12
@@ -372,6 +325,53 @@ importers:
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
+
+  tooling/eslint-config:
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.33.0
+        version: 9.34.0
+      '@next/eslint-plugin-next':
+        specifier: ^15.4.2
+        version: 15.5.0
+      eslint:
+        specifier: ^9.33.0
+        version: 9.34.0(jiti@2.5.1)
+      eslint-config-prettier:
+        specifier: ^10.1.1
+        version: 10.1.8(eslint@9.34.0(jiti@2.5.1))
+      eslint-plugin-only-warn:
+        specifier: ^1.1.0
+        version: 1.1.0
+      eslint-plugin-react:
+        specifier: ^7.37.4
+        version: 7.37.5(eslint@9.34.0(jiti@2.5.1))
+      eslint-plugin-react-hooks:
+        specifier: ^5.2.0
+        version: 5.2.0(eslint@9.34.0(jiti@2.5.1))
+      eslint-plugin-turbo:
+        specifier: ^2.5.0
+        version: 2.5.6(eslint@9.34.0(jiti@2.5.1))(turbo@2.5.2)
+      globals:
+        specifier: ^16.3.0
+        version: 16.3.0
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.2
+      typescript-eslint:
+        specifier: ^8.39.0
+        version: 8.41.0(eslint@9.34.0(jiti@2.5.1))(typescript@5.9.2)
+
+  tooling/tailwind-config:
+    devDependencies:
+      postcss:
+        specifier: ^8.5.3
+        version: 8.5.3
+      tailwindcss:
+        specifier: ^4.1.5
+        version: 4.1.12
+
+  tooling/typescript-config: {}
 
 packages:
 
