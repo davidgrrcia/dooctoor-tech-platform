@@ -22,6 +22,8 @@ export default defineSchema({
     // Health Information
     bloodType: v.string(),
     rh: v.string(),
+    height: v.string(), // Height in cm
+    weight: v.string(), // Weight in kg
     allergies: v.string(),
     medication: v.string(),
     majorDiseases: v.string(),

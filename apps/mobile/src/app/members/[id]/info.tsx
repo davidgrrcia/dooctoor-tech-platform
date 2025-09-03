@@ -285,6 +285,20 @@ export default function MemberInfoScreen() {
               <ThemedText style={styles.fieldValue}>{member.rh}</ThemedText>
             </View>
             <View style={styles.divider} />
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>Altura</ThemedText>
+              <ThemedText style={styles.fieldValue}>
+                {member.height} cm
+              </ThemedText>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.fieldRow}>
+              <ThemedText style={styles.fieldLabel}>Peso</ThemedText>
+              <ThemedText style={styles.fieldValue}>
+                {member.weight} kg
+              </ThemedText>
+            </View>
+            <View style={styles.divider} />
             <View style={styles.textareaBlock}>
               <ThemedText style={styles.fieldLabel}>
                 Alergias / Intolerancias

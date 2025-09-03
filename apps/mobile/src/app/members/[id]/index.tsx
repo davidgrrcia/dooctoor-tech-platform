@@ -1,5 +1,7 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { api } from "@repo/backend/convex/_generated/api";
+import { useQuery } from "convex/react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   AlertTriangle,
@@ -18,12 +20,83 @@ export default function MemberProfileScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
 
+  // Query member data using hardcoded ID for now
+  const member = useQuery(api.members.getMemberById, {
+    id: "p575b1f9mtgts3qbb7hgw160197pw0sn" as any,
+  });
+
   const handleOpenInfo = () => {
     router.push(`/members/${id}/info`);
   };
   const [activeChip, setActiveChip] = useState<
     "Registros" | "Mediciones" | "Medicamentos" | "Vacunas"
   >("Registros");
+
+  // Loading state
+  if (member === undefined) {
+    return (
+      <ThemedView style={styles.screen}>
+        <View style={styles.header}>
+          <View style={styles.headerRow}>
+            <TouchableOpacity
+              style={styles.backBtn}
+              activeOpacity={0.8}
+              onPress={() => router.back()}
+            >
+              <ChevronLeft size={18} color="#4B5563" />
+            </TouchableOpacity>
+            <View style={styles.headerTitleBlock}>
+              <ThemedText style={styles.headerTitle}>Cargando...</ThemedText>
+            </View>
+            <View style={{ width: 40 }} />
+          </View>
+        </View>
+      </ThemedView>
+    );
+  }
+
+  // Member not found
+  if (!member) {
+    return (
+      <ThemedView style={styles.screen}>
+        <View style={styles.header}>
+          <View style={styles.headerRow}>
+            <TouchableOpacity
+              style={styles.backBtn}
+              activeOpacity={0.8}
+              onPress={() => router.back()}
+            >
+              <ChevronLeft size={18} color="#4B5563" />
+            </TouchableOpacity>
+            <View style={styles.headerTitleBlock}>
+              <ThemedText style={styles.headerTitle}>
+                Miembro no encontrado
+              </ThemedText>
+            </View>
+            <View style={{ width: 40 }} />
+          </View>
+        </View>
+      </ThemedView>
+    );
+  }
+
+  // Calculate age from birth date
+  const calculateAge = (dateOfBirth: string): number => {
+    const [day, month, year] = dateOfBirth.split("-").map(Number);
+    const birthDate = new Date(year, month - 1, day);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  };
+
+  const age = calculateAge(member.dateOfBirth);
 
   return (
     <ThemedView style={styles.screen}>
@@ -39,7 +112,9 @@ export default function MemberProfileScreen() {
               <ChevronLeft size={18} color="#4B5563" />
             </TouchableOpacity>
             <View style={styles.headerTitleBlock}>
-              <ThemedText style={styles.headerTitle}>Maria Lafuente</ThemedText>
+              <ThemedText style={styles.headerTitle}>
+                {member.name} {member.surname}
+              </ThemedText>
             </View>
             <TouchableOpacity style={styles.editBtn} activeOpacity={0.9}>
               <Edit2 size={18} color="#FFFFFF" />
@@ -59,15 +134,18 @@ export default function MemberProfileScreen() {
               <View style={styles.profileTextBlock}>
                 <View style={styles.nameRow}>
                   <ThemedText style={styles.nameText}>
-                    Maria Lafuente
+                    {member.name} {member.surname}
                   </ThemedText>
                 </View>
-                <ThemedText style={styles.metaText}>Género: Mujer</ThemedText>
                 <ThemedText style={styles.metaText}>
-                  Nacimiento: 12 de Febrero, 1976
+                  Género: {member.gender}
                 </ThemedText>
                 <ThemedText style={styles.metaText}>
-                  Tipo de Sangre: O+
+                  Nacimiento: {member.dateOfBirth}
+                </ThemedText>
+                <ThemedText style={styles.metaText}>
+                  Tipo de Sangre: {member.bloodType}
+                  {member.rh}
                 </ThemedText>
               </View>
             </View>
@@ -75,15 +153,19 @@ export default function MemberProfileScreen() {
             {/* Quick Stats */}
             <View style={styles.statsGrid}>
               <View style={styles.statItem}>
-                <ThemedText style={styles.statValue}>49 años</ThemedText>
+                <ThemedText style={styles.statValue}>{age} años</ThemedText>
                 <ThemedText style={styles.statLabel}>Edad</ThemedText>
               </View>
               <View style={styles.statItem}>
-                <ThemedText style={styles.statValue}>65 kg</ThemedText>
+                <ThemedText style={styles.statValue}>
+                  {member.weight} kg
+                </ThemedText>
                 <ThemedText style={styles.statLabel}>Peso</ThemedText>
               </View>
               <View style={styles.statItem}>
-                <ThemedText style={styles.statValue}>165 cm</ThemedText>
+                <ThemedText style={styles.statValue}>
+                  {member.height} cm
+                </ThemedText>
                 <ThemedText style={styles.statLabel}>Altura</ThemedText>
               </View>
             </View>

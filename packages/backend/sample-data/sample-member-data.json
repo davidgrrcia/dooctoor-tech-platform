@@ -1,12 +1,15 @@
 [
   {
+    "_id": "p575b1f9mtgts3qbb7hgw160197pw0sn",
     "nickname": "Em",
     "name": "Maria",
     "surname": "Lafuente",
-    "gender": "mujer",
+    "gender": "Femenino",
     "dateOfBirth": "12-02-1976",
     "bloodType": "O",
     "rh": "+",
+    "height": "165",
+    "weight": "65",
     "allergies": "Cacahuetes — reacción severa (EpiPen)",
     "medication": "Salbutamol inhalador 100 mcg según necesidad; Cetirizina 5 mg por la noche durante primavera.",
     "majorDiseases": "Asma leve persistente desde la infancia. Alergia alimentaria a cacahuetes.",
