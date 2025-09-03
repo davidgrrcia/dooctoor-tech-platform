@@ -1,3 +1,4 @@
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { api } from "@repo/backend/convex/_generated/api";
@@ -134,23 +135,7 @@ export default function MemberInfoScreen() {
   if (member === undefined) {
     // Loading state
     return (
-      <ThemedView style={styles.screen}>
-        <View style={styles.header}>
-          <View style={styles.headerRow}>
-            <TouchableOpacity
-              style={styles.backBtn}
-              activeOpacity={0.8}
-              onPress={() => router.back()}
-            >
-              <ChevronLeft size={18} color="#4B5563" />
-            </TouchableOpacity>
-            <View style={styles.headerTitleBlock}>
-              <ThemedText style={styles.headerTitle}>Cargando...</ThemedText>
-            </View>
-            <View style={{ width: 40 }} />
-          </View>
-        </View>
-      </ThemedView>
+      <LoadingSpinner message="Cargando información..." fullScreen={true} />
     );
   }
 

@@ -1,6 +1,9 @@
+import { api } from "@repo/backend/convex/_generated/api";
+import { useQuery } from "convex/react";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import {
@@ -14,6 +17,19 @@ import {
 
 export default function HomeScreen() {
   const router = useRouter();
+
+  // Fetch all members from Convex
+  const members = useQuery(api.members.getAllMembers);
+
+  // Loading state
+  if (members === undefined) {
+    return (
+      <LoadingSpinner
+        message="Cargando miembros de la familia..."
+        fullScreen={true}
+      />
+    );
+  }
   return (
     <ThemedView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -41,55 +57,37 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.cardList}>
-            <TouchableOpacity
-              style={styles.card}
-              activeOpacity={0.9}
-              onPress={() => router.push("/members/sarah")}
-            >
-              <View style={styles.cardRow}>
-                <View style={styles.avatarCircle}>
-                  <User size={24} color="#6B7280" />
-                </View>
-                <View style={styles.cardTextBlock}>
-                  <ThemedText style={styles.cardTitle}>
-                    Sarah Johnson
-                  </ThemedText>
-                </View>
-                <ChevronRight size={22} color="#9CA3AF" />
+            {members.length > 0 ? (
+              members.map((member) => (
+                <TouchableOpacity
+                  key={member._id}
+                  style={styles.card}
+                  activeOpacity={0.9}
+                  onPress={() => router.push(`/members/${member._id}`)}
+                >
+                  <View style={styles.cardRow}>
+                    <View style={styles.avatarCircle}>
+                      <User size={24} color="#6B7280" />
+                    </View>
+                    <View style={styles.cardTextBlock}>
+                      <ThemedText style={styles.cardTitle}>
+                        {member.name} {member.surname}
+                      </ThemedText>
+                    </View>
+                    <ChevronRight size={22} color="#9CA3AF" />
+                  </View>
+                </TouchableOpacity>
+              ))
+            ) : (
+              <View style={styles.emptyState}>
+                <ThemedText style={styles.emptyText}>
+                  No hay miembros registrados
+                </ThemedText>
+                <ThemedText style={styles.emptySubtext}>
+                  Añade el primer miembro de la familia
+                </ThemedText>
               </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.card}
-              activeOpacity={0.9}
-              onPress={() => router.push("/members/mike")}
-            >
-              <View style={styles.cardRow}>
-                <View style={styles.avatarCircle}>
-                  <User size={24} color="#6B7280" />
-                </View>
-                <View style={styles.cardTextBlock}>
-                  <ThemedText style={styles.cardTitle}>Mike Johnson</ThemedText>
-                </View>
-                <ChevronRight size={22} color="#9CA3AF" />
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.card}
-              activeOpacity={0.9}
-              onPress={() => router.push("/members/emma")}
-            >
-              <View style={styles.cardRow}>
-                <View style={styles.avatarCircle}>
-                  <User size={24} color="#6B7280" />
-                </View>
-                <View style={styles.cardTextBlock}>
-                  <ThemedText style={styles.cardTitle}>Emma Johnson</ThemedText>
-                </View>
-                <ChevronRight size={22} color="#9CA3AF" />
-              </View>
-            </TouchableOpacity>
+            )}
           </View>
         </View>
 
@@ -234,6 +232,23 @@ const styles = StyleSheet.create({
     marginTop: 2,
     fontSize: 12,
     color: "#6B7280",
+  },
+  emptyState: {
+    padding: 32,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  emptyText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#6B7280",
+    textAlign: "center",
+  },
+  emptySubtext: {
+    marginTop: 4,
+    fontSize: 12,
+    color: "#9CA3AF",
+    textAlign: "center",
   },
   quickGrid: {
     flexDirection: "row",
