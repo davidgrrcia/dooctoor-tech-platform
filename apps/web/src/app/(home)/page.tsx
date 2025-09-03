@@ -1,7 +1,8 @@
 "use client";
 
+import { Header } from "@/components";
 import { Authenticated, Unauthenticated } from "convex/react";
-import { Header, MembersContent, SignInForm } from "./components";
+import { MembersList, SignInForm } from "./components";
 
 export default function HomePage() {
   return (
@@ -16,7 +17,7 @@ export default function HomePage() {
         </div>
 
         <Authenticated>
-          <MembersContent />
+          <MembersList />
         </Authenticated>
 
         <Unauthenticated>
