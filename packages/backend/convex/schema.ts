@@ -9,6 +9,51 @@ export default defineSchema({
   numbers: defineTable({
     value: v.number(),
   }),
+
+  // Members table with comprehensive health and personal information
+  members: defineTable({
+    // Personal Information
+    nickname: v.string(),
+    name: v.string(),
+    surname: v.string(),
+    gender: v.string(),
+    dateOfBirth: v.string(),
+
+    // Health Information
+    bloodType: v.string(),
+    rh: v.string(),
+    allergies: v.string(),
+    medication: v.string(),
+    majorDiseases: v.string(),
+    background: v.string(),
+
+    // Contact Information
+    email: v.string(),
+    phone: v.string(),
+    address: v.string(),
+
+    // Emergency Contacts
+    emergencyContacts: v.array(
+      v.object({
+        name: v.string(),
+        relationship: v.string(),
+        phone: v.string(),
+      }),
+    ),
+
+    // Insurance Information
+    insurance: v.object({
+      company: v.string(),
+      policyNumber: v.string(),
+      coverages: v.string(),
+      validFrom: v.string(),
+      validTo: v.string(),
+    }),
+
+    // Metadata
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }),
 });
 
 // import { defineSchema, defineTable } from 'convex/server';

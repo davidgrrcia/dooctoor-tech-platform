@@ -1,0 +1,39 @@
+[
+  {
+    "nickname": "Em",
+    "name": "Maria",
+    "surname": "Lafuente",
+    "gender": "mujer",
+    "dateOfBirth": "12-02-1976",
+    "bloodType": "O",
+    "rh": "+",
+    "allergies": "Cacahuetes — reacción severa (EpiPen)",
+    "medication": "Salbutamol inhalador 100 mcg según necesidad; Cetirizina 5 mg por la noche durante primavera.",
+    "majorDiseases": "Asma leve persistente desde la infancia. Alergia alimentaria a cacahuetes.",
+    "background": "Cesárea a término sin complicaciones. Hospitalización por bronquiolitis a los 2 años.",
+    "email": "emma.johnson@example.com",
+    "phone": "+34 600 123 456",
+    "address": "C/ Salud 123, Madrid",
+    "emergencyContacts": [
+      {
+        "name": "Sofía Johnson",
+        "relationship": "Madre",
+        "phone": "+34 600 222 333"
+      },
+      {
+        "name": "Michael Johnson",
+        "relationship": "Padre",
+        "phone": "+34 600 444 555"
+      }
+    ],
+    "insurance": {
+      "company": "SaludPlus",
+      "policyNumber": "SP-001234",
+      "coverages": "Consultas, Urgencias, Pediatría, Laboratorio",
+      "validFrom": "01/01/2024",
+      "validTo": "12/31/2025"
+    },
+    "createdAt": 1725379200000,
+    "updatedAt": 1725379200000
+  }
+]

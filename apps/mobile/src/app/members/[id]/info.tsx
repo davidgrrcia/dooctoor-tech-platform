@@ -1,5 +1,7 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { api } from "@repo/backend/convex/_generated/api";
+import { useQuery } from "convex/react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   ChevronLeft,
@@ -12,8 +14,174 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function MemberInfoScreen() {
   const router = useRouter();
-  useLocalSearchParams<{ id: string }>();
-  const displayId = "123456789123";
+  const { id } = useLocalSearchParams<{ id: string }>();
+
+  // Convex hooks - simplified for display only
+  // Using hardcoded ID for now
+  const member = useQuery(api.members.getMemberById, {
+    id: "p575b1f9mtgts3qbb7hgw160197pw0sn" as any,
+  });
+
+  // COMMENTED OUT FOR NOW - EDITING FUNCTIONALITY
+  /*
+  useEffect(() => {
+    if (member && !formData) {
+      setFormData({
+        nickname: member.nickname,
+        name: member.name,
+        surname: member.surname,
+        gender: member.gender,
+        dateOfBirth: member.dateOfBirth,
+        bloodType: member.bloodType,
+        rh: member.rh,
+        allergies: member.allergies,
+        medication: member.medication,
+        majorDiseases: member.majorDiseases,
+        background: member.background,
+        email: member.email,
+        phone: member.phone,
+        address: member.address,
+        emergencyContacts: member.emergencyContacts,
+        insurance: member.insurance,
+      });
+    }
+  }, [member, formData]);
+  */
+
+  // COMMENTED OUT FOR NOW - EDITING FUNCTIONALITY
+  /*
+  const handleSave = async () => {
+    if (!formData || !member) return;
+
+    try {
+      await updateMember({
+        id: member._id,
+        ...formData,
+      });
+      setIsEditing(false);
+      Alert.alert("Éxito", "Información actualizada correctamente");
+    } catch (error) {
+      Alert.alert("Error", "No se pudo actualizar la información");
+    }
+  };
+
+  const handleCancel = () => {
+    if (member) {
+      setFormData({
+        nickname: member.nickname,
+        name: member.name,
+        surname: member.surname,
+        gender: member.gender,
+        dateOfBirth: member.dateOfBirth,
+        bloodType: member.bloodType,
+        rh: member.rh,
+        allergies: member.allergies,
+        medication: member.medication,
+        majorDiseases: member.majorDiseases,
+        background: member.background,
+        email: member.email,
+        phone: member.phone,
+        address: member.address,
+        emergencyContacts: member.emergencyContacts,
+        insurance: member.insurance,
+      });
+    }
+    setIsEditing(false);
+  };
+
+  const updateFormField = (field: keyof MemberFormData, value: any) => {
+    if (!formData) return;
+    setFormData({ ...formData, [field]: value });
+  };
+
+  const updateEmergencyContact = (
+    index: number,
+    field: string,
+    value: string,
+  ) => {
+    if (!formData) return;
+    const updatedContacts = [...formData.emergencyContacts];
+    updatedContacts[index] = { ...updatedContacts[index], [field]: value };
+    setFormData({ ...formData, emergencyContacts: updatedContacts });
+  };
+
+  const addEmergencyContact = () => {
+    if (!formData) return;
+    const newContact = { name: "", relationship: "", phone: "" };
+    setFormData({
+      ...formData,
+      emergencyContacts: [...formData.emergencyContacts, newContact],
+    });
+  };
+
+  const removeEmergencyContact = (index: number) => {
+    if (!formData) return;
+    const updatedContacts = formData.emergencyContacts.filter(
+      (_, i) => i !== index,
+    );
+    setFormData({ ...formData, emergencyContacts: updatedContacts });
+  };
+
+  const updateInsurance = (field: string, value: string) => {
+    if (!formData) return;
+    setFormData({
+      ...formData,
+      insurance: { ...formData.insurance, [field]: value },
+    });
+  };
+  */
+
+  if (member === undefined) {
+    // Loading state
+    return (
+      <ThemedView style={styles.screen}>
+        <View style={styles.header}>
+          <View style={styles.headerRow}>
+            <TouchableOpacity
+              style={styles.backBtn}
+              activeOpacity={0.8}
+              onPress={() => router.back()}
+            >
+              <ChevronLeft size={18} color="#4B5563" />
+            </TouchableOpacity>
+            <View style={styles.headerTitleBlock}>
+              <ThemedText style={styles.headerTitle}>Cargando...</ThemedText>
+            </View>
+            <View style={{ width: 40 }} />
+          </View>
+        </View>
+      </ThemedView>
+    );
+  }
+
+  if (!member) {
+    return (
+      <ThemedView style={styles.screen}>
+        <View style={styles.header}>
+          <View style={styles.headerRow}>
+            <TouchableOpacity
+              style={styles.backBtn}
+              activeOpacity={0.8}
+              onPress={() => router.back()}
+            >
+              <ChevronLeft size={18} color="#4B5563" />
+            </TouchableOpacity>
+            <View style={styles.headerTitleBlock}>
+              <ThemedText style={styles.headerTitle}>
+                Miembro no encontrado
+              </ThemedText>
+              <ThemedText style={styles.headerSubtitle}>
+                No se encontró un miembro con ID: {id}
+              </ThemedText>
+            </View>
+            <View style={{ width: 40 }} />
+          </View>
+        </View>
+      </ThemedView>
+    );
+  }
+
+  const displayId = member._id.slice(-12);
 
   return (
     <ThemedView style={styles.screen}>
@@ -30,13 +198,41 @@ export default function MemberInfoScreen() {
             </TouchableOpacity>
             <View style={styles.headerTitleBlock}>
               <ThemedText style={styles.headerTitle}>
-                Información de Emma Johnson
+                Información de {member.name} {member.surname}
               </ThemedText>
               <ThemedText style={styles.headerSubtitle}>
                 ID: {displayId}
               </ThemedText>
             </View>
             <View style={{ width: 40 }} />
+            {/* COMMENTED OUT EDIT BUTTON
+            <TouchableOpacity
+              style={styles.editBtn}
+              activeOpacity={0.8}
+              onPress={() => {
+                if (isEditing) {
+                  handleSave();
+                } else {
+                  setIsEditing(true);
+                }
+              }}
+            >
+              {isEditing ? (
+                <Save size={18} color="#059669" />
+              ) : (
+                <Edit3 size={18} color="#4B5563" />
+              )}
+            </TouchableOpacity>
+            {isEditing && (
+              <TouchableOpacity
+                style={[styles.editBtn, { marginLeft: 8 }]}
+                activeOpacity={0.8}
+                onPress={handleCancel}
+              >
+                <X size={18} color="#DC2626" />
+              </TouchableOpacity>
+            )}
+            */}
           </View>
         </View>
 
@@ -46,56 +242,62 @@ export default function MemberInfoScreen() {
           <View style={styles.card}>
             <View style={styles.fieldRow}>
               <ThemedText style={styles.fieldLabel}>Apodo</ThemedText>
-              <ThemedText style={styles.fieldValue}>Em</ThemedText>
+              <ThemedText style={styles.fieldValue}>
+                {member.nickname}
+              </ThemedText>
             </View>
             <View style={styles.divider} />
             <View style={styles.fieldRow}>
               <ThemedText style={styles.fieldLabel}>Nombre</ThemedText>
-              <ThemedText style={styles.fieldValue}>Maria</ThemedText>
+              <ThemedText style={styles.fieldValue}>{member.name}</ThemedText>
             </View>
             <View style={styles.divider} />
             <View style={styles.fieldRow}>
               <ThemedText style={styles.fieldLabel}>Apellido</ThemedText>
-              <ThemedText style={styles.fieldValue}>Lafuente</ThemedText>
+              <ThemedText style={styles.fieldValue}>
+                {member.surname}
+              </ThemedText>
             </View>
             <View style={styles.divider} />
             <View style={styles.fieldRow}>
               <ThemedText style={styles.fieldLabel}>Género</ThemedText>
-              <ThemedText style={styles.fieldValue}>mujer</ThemedText>
+              <ThemedText style={styles.fieldValue}>{member.gender}</ThemedText>
             </View>
             <View style={styles.divider} />
             <View style={styles.fieldRow}>
               <ThemedText style={styles.fieldLabel}>
                 Fecha de nacimiento
               </ThemedText>
-              <ThemedText style={styles.fieldValue}>12-02-1976</ThemedText>
+              <ThemedText style={styles.fieldValue}>
+                {member.dateOfBirth}
+              </ThemedText>
             </View>
             <View style={styles.divider} />
             <View style={styles.fieldRow}>
               <ThemedText style={styles.fieldLabel}>Grupo sanguíneo</ThemedText>
-              <ThemedText style={styles.fieldValue}>O</ThemedText>
+              <ThemedText style={styles.fieldValue}>
+                {member.bloodType}
+              </ThemedText>
             </View>
             <View style={styles.divider} />
             <View style={styles.fieldRow}>
               <ThemedText style={styles.fieldLabel}>RH</ThemedText>
-              <ThemedText style={styles.fieldValue}>+</ThemedText>
+              <ThemedText style={styles.fieldValue}>{member.rh}</ThemedText>
             </View>
-
             <View style={styles.divider} />
             <View style={styles.textareaBlock}>
               <ThemedText style={styles.fieldLabel}>
                 Alergias / Intolerancias
               </ThemedText>
               <ThemedText style={styles.textareaValue}>
-                Cacahuetes — reacción severa (EpiPen)
+                {member.allergies}
               </ThemedText>
             </View>
             <View style={styles.divider} />
             <View style={styles.textareaBlock}>
               <ThemedText style={styles.fieldLabel}>Medicación</ThemedText>
               <ThemedText style={styles.textareaValue}>
-                Salbutamol inhalador 100 mcg según necesidad; Cetirizina 5 mg
-                por la noche durante primavera.
+                {member.medication}
               </ThemedText>
             </View>
             <View style={styles.divider} />
@@ -104,16 +306,14 @@ export default function MemberInfoScreen() {
                 Enfermedades importantes
               </ThemedText>
               <ThemedText style={styles.textareaValue}>
-                Asma leve persistente desde la infancia. Alergia alimentaria a
-                cacahuetes.
+                {member.majorDiseases}
               </ThemedText>
             </View>
             <View style={styles.divider} />
             <View style={styles.textareaBlock}>
               <ThemedText style={styles.fieldLabel}>Antecedentes</ThemedText>
               <ThemedText style={styles.textareaValue}>
-                Cesárea a término sin complicaciones. Hospitalización por
-                bronquiolitis a los 2 años.
+                {member.background}
               </ThemedText>
             </View>
           </View>
@@ -131,9 +331,7 @@ export default function MemberInfoScreen() {
               </View>
               <View style={styles.cardTextBlock}>
                 <ThemedText style={styles.cardTitle}>Correo</ThemedText>
-                <ThemedText style={styles.cardMeta}>
-                  emma.johnson@example.com
-                </ThemedText>
+                <ThemedText style={styles.cardMeta}>{member.email}</ThemedText>
               </View>
             </View>
             <View style={styles.divider} />
@@ -143,7 +341,7 @@ export default function MemberInfoScreen() {
               </View>
               <View style={styles.cardTextBlock}>
                 <ThemedText style={styles.cardTitle}>Teléfono</ThemedText>
-                <ThemedText style={styles.cardMeta}>+34 600 123 456</ThemedText>
+                <ThemedText style={styles.cardMeta}>{member.phone}</ThemedText>
               </View>
             </View>
             <View style={styles.divider} />
@@ -154,7 +352,7 @@ export default function MemberInfoScreen() {
               <View style={styles.cardTextBlock}>
                 <ThemedText style={styles.cardTitle}>Dirección</ThemedText>
                 <ThemedText style={styles.cardMeta}>
-                  C/ Salud 123, Madrid
+                  {member.address}
                 </ThemedText>
               </View>
             </View>
@@ -167,25 +365,22 @@ export default function MemberInfoScreen() {
             Contactos de emergencia
           </ThemedText>
           <View style={styles.card}>
-            <View style={styles.rowSpaceBetween}>
-              <View>
-                <ThemedText style={styles.cardTitle}>
-                  Sofía Johnson (Madre)
-                </ThemedText>
-                <ThemedText style={styles.cardMeta}>+34 600 222 333</ThemedText>
+            {member.emergencyContacts.map((contact, index) => (
+              <View key={index}>
+                {index > 0 && <View style={styles.divider} />}
+                <View style={styles.rowSpaceBetween}>
+                  <View>
+                    <ThemedText style={styles.cardTitle}>
+                      {contact.name} ({contact.relationship})
+                    </ThemedText>
+                    <ThemedText style={styles.cardMeta}>
+                      {contact.phone}
+                    </ThemedText>
+                  </View>
+                  <Phone size={18} color="#6B7280" />
+                </View>
               </View>
-              <Phone size={18} color="#6B7280" />
-            </View>
-            <View style={styles.divider} />
-            <View style={styles.rowSpaceBetween}>
-              <View>
-                <ThemedText style={styles.cardTitle}>
-                  Michael Johnson (Padre)
-                </ThemedText>
-                <ThemedText style={styles.cardMeta}>+34 600 444 555</ThemedText>
-              </View>
-              <Phone size={18} color="#6B7280" />
-            </View>
+            ))}
           </View>
         </View>
 
@@ -202,7 +397,8 @@ export default function MemberInfoScreen() {
               <View style={styles.cardTextBlock}>
                 <ThemedText style={styles.cardTitle}>Aseguradora</ThemedText>
                 <ThemedText style={styles.cardMeta}>
-                  SaludPlus — Póliza SP-001234
+                  {member.insurance.company} — Póliza{" "}
+                  {member.insurance.policyNumber}
                 </ThemedText>
               </View>
             </View>
@@ -210,14 +406,14 @@ export default function MemberInfoScreen() {
             <View>
               <ThemedText style={styles.cardTitle}>Coberturas</ThemedText>
               <ThemedText style={styles.cardMeta}>
-                Consultas, Urgencias, Pediatría, Laboratorio
+                {member.insurance.coverages}
               </ThemedText>
             </View>
             <View style={styles.divider} />
             <View>
               <ThemedText style={styles.cardTitle}>Vigencia</ThemedText>
               <ThemedText style={styles.cardMeta}>
-                01/01/2024 - 12/31/2025
+                {member.insurance.validFrom} - {member.insurance.validTo}
               </ThemedText>
             </View>
           </View>
@@ -256,6 +452,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  editBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   headerTitleBlock: {
     flex: 1,
     marginHorizontal: 8,
@@ -275,10 +478,34 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     gap: 12,
   },
+  sectionHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   sectionTitle: {
     fontSize: 16,
     fontWeight: "600",
     color: "#111827",
+  },
+  addButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    backgroundColor: "#F0FDF4",
+    borderRadius: 8,
+  },
+  addButtonText: {
+    fontSize: 12,
+    color: "#059669",
+    fontWeight: "500",
+  },
+  removeButton: {
+    padding: 8,
+    backgroundColor: "#FEF2F2",
+    borderRadius: 8,
   },
   card: {
     backgroundColor: "#FFFFFF",
@@ -301,11 +528,24 @@ const styles = StyleSheet.create({
   fieldLabel: {
     fontSize: 14,
     color: "#6B7280",
+    flex: 1,
   },
   fieldValue: {
     fontSize: 14,
     fontWeight: "600",
     color: "#111827",
+    flex: 1,
+    textAlign: "right",
+  },
+  fieldInput: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#111827",
+    flex: 1,
+    textAlign: "right",
+    borderBottomWidth: 1,
+    borderBottomColor: "#E5E7EB",
+    paddingVertical: 4,
   },
   textareaBlock: {
     gap: 6,
@@ -313,6 +553,24 @@ const styles = StyleSheet.create({
   textareaValue: {
     fontSize: 14,
     color: "#111827",
+  },
+  textareaInput: {
+    fontSize: 14,
+    color: "#111827",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    borderRadius: 8,
+    padding: 12,
+    minHeight: 80,
+    textAlignVertical: "top",
+  },
+  input: {
+    fontSize: 14,
+    color: "#111827",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    borderRadius: 8,
+    padding: 12,
   },
   cardRow: {
     flexDirection: "row",
@@ -341,6 +599,24 @@ const styles = StyleSheet.create({
   },
   cardMeta: {
     fontSize: 12,
+    color: "#6B7280",
+  },
+  emergencyContactEdit: {
+    gap: 8,
+  },
+  emergencyInput: {
+    marginBottom: 0,
+  },
+  dateRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  dateInput: {
+    flex: 1,
+  },
+  dateSeparator: {
+    fontSize: 14,
     color: "#6B7280",
   },
   divider: {

@@ -39,7 +39,7 @@ export default function MemberProfileScreen() {
               <ChevronLeft size={18} color="#4B5563" />
             </TouchableOpacity>
             <View style={styles.headerTitleBlock}>
-              <ThemedText style={styles.headerTitle}>Emma Johnson</ThemedText>
+              <ThemedText style={styles.headerTitle}>Maria Lafuente</ThemedText>
             </View>
             <TouchableOpacity style={styles.editBtn} activeOpacity={0.9}>
               <Edit2 size={18} color="#FFFFFF" />
@@ -58,13 +58,13 @@ export default function MemberProfileScreen() {
               </View>
               <View style={styles.profileTextBlock}>
                 <View style={styles.nameRow}>
-                  <ThemedText style={styles.nameText}>Emma Johnson</ThemedText>
+                  <ThemedText style={styles.nameText}>
+                    Maria Lafuente
+                  </ThemedText>
                 </View>
+                <ThemedText style={styles.metaText}>Género: Mujer</ThemedText>
                 <ThemedText style={styles.metaText}>
-                  Género: Femenino
-                </ThemedText>
-                <ThemedText style={styles.metaText}>
-                  Nacimiento: 15 de Marzo, 2016
+                  Nacimiento: 12 de Febrero, 1976
                 </ThemedText>
                 <ThemedText style={styles.metaText}>
                   Tipo de Sangre: O+
@@ -75,15 +75,15 @@ export default function MemberProfileScreen() {
             {/* Quick Stats */}
             <View style={styles.statsGrid}>
               <View style={styles.statItem}>
-                <ThemedText style={styles.statValue}>8 años</ThemedText>
+                <ThemedText style={styles.statValue}>49 años</ThemedText>
                 <ThemedText style={styles.statLabel}>Edad</ThemedText>
               </View>
               <View style={styles.statItem}>
-                <ThemedText style={styles.statValue}>25 kg</ThemedText>
+                <ThemedText style={styles.statValue}>65 kg</ThemedText>
                 <ThemedText style={styles.statLabel}>Peso</ThemedText>
               </View>
               <View style={styles.statItem}>
-                <ThemedText style={styles.statValue}>127 cm</ThemedText>
+                <ThemedText style={styles.statValue}>165 cm</ThemedText>
                 <ThemedText style={styles.statLabel}>Altura</ThemedText>
               </View>
             </View>

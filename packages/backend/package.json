@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "dev": "convex dev",
-    "setup": "convex dev --until-success"
+    "setup": "convex dev --until-success",
+    "import:sample-data": "npx convex import --table members ./sample-data/sample-member-data.json",
+    "import:sample-data:replace": "npx convex import --table members --replace ./sample-data/sample-member-data.json"
   },
   "author": "",
   "license": "ISC",
