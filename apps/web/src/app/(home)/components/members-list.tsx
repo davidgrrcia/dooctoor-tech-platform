@@ -2,11 +2,38 @@
 
 import { api } from "@repo/backend/convex/_generated/api";
 import { useQuery } from "convex/react";
+import { useMemo, useState } from "react";
 import { MemberCard } from "./member-card";
 import { MembersListSkeleton } from "./members-list-skeleton";
 
 export function MembersList() {
   const members = useQuery(api.members.getAllMembers);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter members based on search term
+  const filteredMembers = useMemo(() => {
+    if (!members || !searchTerm.trim()) {
+      return members || [];
+    }
+
+    const searchLower = searchTerm.toLowerCase().trim();
+
+    return members.filter((member) => {
+      // Search by name (first name + surname)
+      const fullName = `${member.name} ${member.surname}`.toLowerCase();
+      if (fullName.includes(searchLower)) return true;
+
+      // Search by ID (last 8 characters, case insensitive)
+      const displayId = member._id.slice(-8).toLowerCase();
+      if (displayId.includes(searchLower)) return true;
+
+      // Search by email
+      const email = member.email.toLowerCase();
+      if (email.includes(searchLower)) return true;
+
+      return false;
+    });
+  }, [members, searchTerm]);
 
   if (members === undefined) {
     return <MembersListSkeleton />;
@@ -32,14 +59,27 @@ export function MembersList() {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <p className="text-muted-foreground">
-            Total: {members.length} miembros
+            {searchTerm.trim() ? (
+              <>
+                {filteredMembers.length} de {members.length} miembros
+                {filteredMembers.length !== members.length && (
+                  <span className="ml-2 text-sm text-gray-400">
+                    (filtrados por "{searchTerm}")
+                  </span>
+                )}
+              </>
+            ) : (
+              `Total: ${members.length} miembros`
+            )}
           </p>
         </div>
         <div className="flex items-center gap-4">
           <div className="relative">
             <input
               type="text"
-              placeholder="Buscar miembros..."
+              placeholder="Buscar por nombre, ID o email..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="focus:border-brand focus:ring-brand w-64 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-1"
             />
             <svg
@@ -59,11 +99,24 @@ export function MembersList() {
         </div>
       </div>
 
-      <div className="space-y-3">
-        {members.map((member) => (
-          <MemberCard key={member._id} member={member} />
-        ))}
-      </div>
+      {filteredMembers.length === 0 && searchTerm.trim() ? (
+        <div className="py-12 text-center">
+          <h3 className="mb-2 text-xl font-medium text-gray-900">
+            No se encontraron resultados
+          </h3>
+          <p className="text-muted-foreground">
+            No hay miembros que coincidan con "{searchTerm}".
+            <br />
+            Intenta buscar por nombre, ID o email.
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {filteredMembers.map((member) => (
+            <MemberCard key={member._id} member={member} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

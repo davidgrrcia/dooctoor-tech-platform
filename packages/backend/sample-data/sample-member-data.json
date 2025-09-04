@@ -1,6 +1,5 @@
 [
   {
-    "_id": "p575b1f9mtgts3qbb7hgw160197pw0sn",
     "nickname": "Em",
     "name": "Maria",
     "surname": "Lafuente",
@@ -38,5 +37,122 @@
     },
     "createdAt": 1725379200000,
     "updatedAt": 1725379200000
+  },
+  {
+    "nickname": "Alex",
+    "name": "Alejandro",
+    "surname": "García Rodríguez",
+    "gender": "Masculino",
+    "dateOfBirth": "15-08-1985",
+    "bloodType": "A",
+    "rh": "+",
+    "height": "178",
+    "weight": "75",
+    "allergies": "Ninguna conocida",
+    "medication": "Atorvastatina 20 mg por la noche; Ibuprofeno 400 mg según necesidad.",
+    "majorDiseases": "Hipertensión arterial leve. Colesterol elevado.",
+    "background": "Parto natural sin complicaciones. Fractura de brazo derecho a los 12 años.",
+    "email": "alejandro.garcia@example.com",
+    "phone": "+34 600 789 012",
+    "address": "Av. Libertad 456, Barcelona",
+    "emergencyContacts": [
+      {
+        "name": "Carmen Rodríguez",
+        "relationship": "Esposa",
+        "phone": "+34 600 888 999"
+      },
+      {
+        "name": "Luis García",
+        "relationship": "Hermano",
+        "phone": "+34 600 111 222"
+      }
+    ],
+    "insurance": {
+      "company": "MediCare",
+      "policyNumber": "MC-567890",
+      "coverages": "Consultas, Urgencias, Especialistas, Hospitalización",
+      "validFrom": "03/15/2024",
+      "validTo": "03/14/2026"
+    },
+    "createdAt": 1725465600000,
+    "updatedAt": 1725465600000
+  },
+  {
+    "nickname": "Ana",
+    "name": "Ana Isabel",
+    "surname": "Martínez López",
+    "gender": "Femenino",
+    "dateOfBirth": "03-11-1992",
+    "bloodType": "B",
+    "rh": "-",
+    "height": "162",
+    "weight": "58",
+    "allergies": "Penicilina — reacción cutánea",
+    "medication": "Anticonceptivos orales; Hierro 65 mg diario.",
+    "majorDiseases": "Anemia ferropénica. Migrañas ocasionales.",
+    "background": "Parto natural sin complicaciones. Apendicectomía a los 16 años.",
+    "email": "ana.martinez@example.com",
+    "phone": "+34 600 345 678",
+    "address": "C/ Mayor 789, Sevilla",
+    "emergencyContacts": [
+      {
+        "name": "Pedro Martínez",
+        "relationship": "Padre",
+        "phone": "+34 600 555 666"
+      },
+      {
+        "name": "Isabel López",
+        "relationship": "Madre",
+        "phone": "+34 600 777 888"
+      }
+    ],
+    "insurance": {
+      "company": "VidaSana",
+      "policyNumber": "VS-345678",
+      "coverages": "Consultas, Urgencias, Ginecología, Maternidad",
+      "validFrom": "06/01/2024",
+      "validTo": "05/31/2025"
+    },
+    "createdAt": 1725552000000,
+    "updatedAt": 1725552000000
+  },
+  {
+    "nickname": "Carlitos",
+    "name": "Carlos Eduardo",
+    "surname": "Fernández Ruiz",
+    "gender": "Masculino",
+    "dateOfBirth": "22-05-2010",
+    "bloodType": "AB",
+    "rh": "+",
+    "height": "145",
+    "weight": "38",
+    "allergies": "Ácaros del polvo — rinitis alérgica",
+    "medication": "Montelukast 5 mg por la noche; Spray nasal según necesidad.",
+    "majorDiseases": "Rinitis alérgica estacional. Dermatitis atópica leve.",
+    "background": "Parto prematuro a las 36 semanas. Desarrollo normal posterior.",
+    "email": "carlos.fernandez@example.com",
+    "phone": "+34 600 901 234",
+    "address": "C/ Esperanza 321, Valencia",
+    "emergencyContacts": [
+      {
+        "name": "Roberto Fernández",
+        "relationship": "Padre",
+        "phone": "+34 600 333 444"
+      },
+      {
+        "name": "María Ruiz",
+        "relationship": "Madre",
+        "phone": "+34 600 666 777"
+      }
+    ],
+    "insurance": {
+      "company": "Infantil Seguro",
+      "policyNumber": "IS-789012",
+      "coverages": "Consultas, Urgencias, Pediatría, Vacunas, Dental",
+      "validFrom": "09/01/2024",
+      "validTo": "08/31/2025"
+    },
+    "createdAt": 1725638400000,
+    "updatedAt": 1725638400000
   }
 ]
