@@ -7,6 +7,7 @@ import { useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { z } from "zod";
+import { formatDateForInput } from "../utils";
 
 // Validation schema
 const memberSchema = z.object({
@@ -120,7 +121,10 @@ export function MemberForm({ memberId, mode }: MemberFormProps) {
       form.setFieldValue("name", existingMember.name || "");
       form.setFieldValue("surname", existingMember.surname || "");
       form.setFieldValue("gender", existingMember.gender || "");
-      form.setFieldValue("dateOfBirth", existingMember.dateOfBirth || "");
+      form.setFieldValue(
+        "dateOfBirth",
+        formatDateForInput(existingMember.dateOfBirth || ""),
+      );
       form.setFieldValue("bloodType", existingMember.bloodType || "");
       form.setFieldValue("rh", existingMember.rh || "");
       form.setFieldValue("height", existingMember.height || "");
@@ -140,13 +144,25 @@ export function MemberForm({ memberId, mode }: MemberFormProps) {
       );
       form.setFieldValue(
         "insurance",
-        existingMember.insurance || {
-          company: "",
-          policyNumber: "",
-          coverages: "",
-          validFrom: "",
-          validTo: "",
-        },
+        existingMember.insurance
+          ? {
+              company: existingMember.insurance.company || "",
+              policyNumber: existingMember.insurance.policyNumber || "",
+              coverages: existingMember.insurance.coverages || "",
+              validFrom: formatDateForInput(
+                existingMember.insurance.validFrom || "",
+              ),
+              validTo: formatDateForInput(
+                existingMember.insurance.validTo || "",
+              ),
+            }
+          : {
+              company: "",
+              policyNumber: "",
+              coverages: "",
+              validFrom: "",
+              validTo: "",
+            },
       );
     }
   }, [existingMember, mode, form]);

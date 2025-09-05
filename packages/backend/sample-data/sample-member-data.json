@@ -4,7 +4,7 @@
     "name": "Maria",
     "surname": "Lafuente",
     "gender": "Femenino",
-    "dateOfBirth": "12-02-1976",
+    "dateOfBirth": "1976-02-12",
     "bloodType": "O",
     "rh": "+",
     "height": "165",
@@ -32,8 +32,8 @@
       "company": "SaludPlus",
       "policyNumber": "SP-001234",
       "coverages": "Consultas, Urgencias, Pediatría, Laboratorio",
-      "validFrom": "01/01/2024",
-      "validTo": "12/31/2025"
+      "validFrom": "2024-01-01",
+      "validTo": "2025-12-31"
     },
     "createdAt": 1725379200000,
     "updatedAt": 1725379200000
@@ -43,7 +43,7 @@
     "name": "Alejandro",
     "surname": "García Rodríguez",
     "gender": "Masculino",
-    "dateOfBirth": "15-08-1985",
+    "dateOfBirth": "1985-08-15",
     "bloodType": "A",
     "rh": "+",
     "height": "178",
@@ -71,8 +71,8 @@
       "company": "MediCare",
       "policyNumber": "MC-567890",
       "coverages": "Consultas, Urgencias, Especialistas, Hospitalización",
-      "validFrom": "03/15/2024",
-      "validTo": "03/14/2026"
+      "validFrom": "2024-03-15",
+      "validTo": "2026-03-14"
     },
     "createdAt": 1725465600000,
     "updatedAt": 1725465600000
@@ -82,7 +82,7 @@
     "name": "Ana Isabel",
     "surname": "Martínez López",
     "gender": "Femenino",
-    "dateOfBirth": "03-11-1992",
+    "dateOfBirth": "1992-11-03",
     "bloodType": "B",
     "rh": "-",
     "height": "162",
@@ -110,8 +110,8 @@
       "company": "VidaSana",
       "policyNumber": "VS-345678",
       "coverages": "Consultas, Urgencias, Ginecología, Maternidad",
-      "validFrom": "06/01/2024",
-      "validTo": "05/31/2025"
+      "validFrom": "2024-06-01",
+      "validTo": "2025-05-31"
     },
     "createdAt": 1725552000000,
     "updatedAt": 1725552000000
@@ -121,7 +121,7 @@
     "name": "Carlos Eduardo",
     "surname": "Fernández Ruiz",
     "gender": "Masculino",
-    "dateOfBirth": "22-05-2010",
+    "dateOfBirth": "2010-05-22",
     "bloodType": "AB",
     "rh": "+",
     "height": "145",
@@ -149,8 +149,8 @@
       "company": "Infantil Seguro",
       "policyNumber": "IS-789012",
       "coverages": "Consultas, Urgencias, Pediatría, Vacunas, Dental",
-      "validFrom": "09/01/2024",
-      "validTo": "08/31/2025"
+      "validFrom": "2024-09-01",
+      "validTo": "2025-08-31"
     },
     "createdAt": 1725638400000,
     "updatedAt": 1725638400000
