@@ -2,6 +2,7 @@
 
 import { api } from "@repo/backend/convex/_generated/api";
 import { useQuery } from "convex/react";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { MemberCard } from "./member-card";
 import { MembersListSkeleton } from "./members-list-skeleton";
@@ -79,15 +80,24 @@ export function MembersList() {
             />
           </svg>
         </div>
-        <button
-          onClick={() => {
-            // TODO: Implement create member functionality
-            console.log("Create new member");
-          }}
-          className="bg-brand hover:bg-brand-hover text-brand-foreground focus:ring-brand flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
-        >
-          Crear Miembro
-        </button>
+        <Link href="/members/create">
+          <button className="bg-brand hover:bg-brand-hover text-brand-foreground focus:ring-brand flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2">
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Crear Miembro
+          </button>
+        </Link>
       </div>
 
       {filteredMembers.length === 0 && searchTerm.trim() ? (

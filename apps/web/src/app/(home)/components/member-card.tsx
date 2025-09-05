@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { calculateAge } from "../utils";
 
 interface MemberCardProps {
@@ -57,9 +58,11 @@ export function MemberCard({ member }: MemberCardProps) {
 
       {/* Manage Button - Fixed Width */}
       <div className="ml-4 flex-shrink-0">
-        <button className="rounded-md border border-gray-300 px-6 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-          Gestionar
-        </button>
+        <Link href={`/members/${member._id}/edit`}>
+          <button className="rounded-md border border-gray-300 px-6 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+            Gestionar
+          </button>
+        </Link>
       </div>
     </div>
   );
