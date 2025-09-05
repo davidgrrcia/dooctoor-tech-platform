@@ -1,10 +1,10 @@
-import { MemberForm } from "@/app/(home)/components/member-form";
+import { MemberFormWrapper } from "@/app/(home)/components/member-form-wrapper";
 import { AppLayout } from "@/components";
 
 export default function CreateMemberPage() {
   return (
     <AppLayout>
-      <MemberForm mode="create" />
+      <MemberFormWrapper mode="create" />
     </AppLayout>
   );
 }

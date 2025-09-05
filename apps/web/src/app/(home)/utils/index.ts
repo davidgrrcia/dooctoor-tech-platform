@@ -1,26 +1,27 @@
+import { Id } from "@repo/backend/convex/_generated/dataModel";
+import { differenceInYears, format, isValid, parse, parseISO } from "date-fns";
+import { es } from "date-fns/locale";
+
+/**
+ * Validate if a string is a valid Convex ID for members
+ */
+export function isValidConvexId(id: string): id is Id<"members"> {
+  // Convex IDs are alphanumeric strings, typically 32+ characters
+  // Based on the error patterns, they look like: p5703wjr6ysdcv4zjvdb8mr3sn7q06p23g
+  const convexIdPattern = /^[a-z0-9]+$/;
+  return convexIdPattern.test(id) && id.length >= 30 && id.length <= 40;
+}
+
 /**
  * Calculate age from birth date string in ISO 8601 format (YYYY-MM-DD)
  */
 export function calculateAge(dateOfBirth: string): number {
   if (!dateOfBirth) return 0;
 
-  const birthDate = new Date(dateOfBirth);
-  const today = new Date();
+  const birthDate = parseISO(dateOfBirth);
+  if (!isValid(birthDate)) return 0;
 
-  // Check if the date is valid
-  if (isNaN(birthDate.getTime())) return 0;
-
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-
-  if (
-    monthDiff < 0 ||
-    (monthDiff === 0 && today.getDate() < birthDate.getDate())
-  ) {
-    age--;
-  }
-
-  return age;
+  return differenceInYears(new Date(), birthDate);
 }
 
 /**
@@ -38,37 +39,26 @@ export function formatDateForInput(dateString: string): string {
 
     // Check if it's already in YYYY-MM-DD format
     if (parts[0] && parts[0].length === 4) {
-      date = new Date(dateString);
+      date = parseISO(dateString);
     } else {
       // Assume DD-MM-YYYY format
-      const [day, month, year] = parts;
-      if (day && month && year) {
-        date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-      } else {
-        date = new Date(dateString);
-      }
+      date = parse(dateString, "dd-MM-yyyy", new Date());
     }
   } else if (dateString.includes("/") && dateString.split("/").length === 3) {
     // Handle MM/DD/YYYY format
-    const [month, day, year] = dateString.split("/");
-    if (month && day && year) {
-      date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-    } else {
-      date = new Date(dateString);
-    }
+    date = parse(dateString, "MM/dd/yyyy", new Date());
   } else {
     // Try direct parsing
-    date = new Date(dateString);
+    date = parseISO(dateString);
   }
 
   // Check if the date is valid
-  if (isNaN(date.getTime())) {
+  if (!isValid(date)) {
     return "";
   }
 
   // Return in YYYY-MM-DD format
-  const isoString = date.toISOString();
-  return isoString.split("T")[0] || "";
+  return format(date, "yyyy-MM-dd");
 }
 
 /**
@@ -77,34 +67,11 @@ export function formatDateForInput(dateString: string): string {
 export function formatDate(dateString: string): string {
   if (!dateString) return dateString;
 
-  const date = new Date(dateString);
+  const date = parseISO(dateString);
 
-  // Check if the date is valid
-  if (isNaN(date.getTime())) return dateString;
+  if (!isValid(date)) return dateString;
 
-  const monthNames = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
-
-  const day = date.getDate();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const monthName = monthNames[month];
-
-  if (!monthName) return dateString;
-
-  return `${day} de ${monthName}, ${year}`;
+  return format(date, "d 'de' MMMM, yyyy", { locale: es });
 }
 
 /**

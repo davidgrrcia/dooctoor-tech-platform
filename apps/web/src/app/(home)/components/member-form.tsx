@@ -1,5 +1,6 @@
 "use client";
 
+import { LoadingSpinner } from "@/components";
 import { api } from "@repo/backend/convex/_generated/api";
 import { Id } from "@repo/backend/convex/_generated/dataModel";
 import { useForm } from "@tanstack/react-form";
@@ -171,25 +172,12 @@ export function MemberForm({ memberId, mode }: MemberFormProps) {
     router.push("/");
   };
 
-  if (mode === "edit" && existingMember === undefined) {
-    return (
-      <div className="flex h-64 items-center justify-center">
-        <div className="text-center">
-          <div className="border-brand mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-t-transparent"></div>
-          <p className="text-gray-600">Cargando miembro...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (mode === "edit" && existingMember === null) {
-    return (
-      <div className="flex h-64 items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-600">Miembro no encontrado</p>
-        </div>
-      </div>
-    );
+  // Handle loading state
+  if (mode === "edit") {
+    // Still loading
+    if (existingMember === undefined) {
+      return <LoadingSpinner message="Cargando miembro..." />;
+    }
   }
 
   return (
@@ -1004,7 +992,11 @@ export function MemberForm({ memberId, mode }: MemberFormProps) {
                 className="bg-brand hover:bg-brand-hover text-brand-foreground focus:ring-brand flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isSubmitting && (
-                  <div className="border-brand-foreground h-4 w-4 animate-spin rounded-full border-2 border-t-transparent"></div>
+                  <LoadingSpinner
+                    inline
+                    size="sm"
+                    className="border-brand-foreground"
+                  />
                 )}
                 {mode === "create" ? "Crear Miembro" : "Actualizar Miembro"}
               </button>
