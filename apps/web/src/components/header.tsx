@@ -3,6 +3,7 @@
 import { useAuth } from "@workos-inc/authkit-nextjs/components";
 import type { User } from "@workos-inc/node";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Header() {
   const { user, signOut } = useAuth();
@@ -10,13 +11,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-10 flex flex-row items-center justify-between border-b border-slate-200 bg-white p-4">
       <div className="flex items-center">
-        <Image
-          src="/logo.svg"
-          alt="Dooctoor"
-          width={120}
-          height={20}
-          className="h-8 w-auto"
-        />
+        <Link href="/">
+          <Image
+            src="/logo.svg"
+            alt="Dooctoor"
+            width={120}
+            height={20}
+            className="h-8 w-auto"
+          />
+        </Link>
       </div>
       {user && <UserMenu user={user} onSignOut={signOut} />}
     </header>

@@ -26,6 +26,22 @@ const memberSchema = z.object({
   email: z.string().email("Email inválido"),
   phone: z.string().min(1, "Teléfono es requerido"),
   address: z.string().min(1, "Dirección es requerida"),
+  // Emergency Contacts
+  emergencyContacts: z.array(
+    z.object({
+      name: z.string().min(1, "Nombre del contacto es requerido"),
+      relationship: z.string().min(1, "Relación es requerida"),
+      phone: z.string().min(1, "Teléfono del contacto es requerido"),
+    }),
+  ),
+  // Insurance Information
+  insurance: z.object({
+    company: z.string(),
+    policyNumber: z.string(),
+    coverages: z.string(),
+    validFrom: z.string(),
+    validTo: z.string(),
+  }),
 });
 
 interface MemberFormProps {
@@ -62,6 +78,20 @@ export function MemberForm({ memberId, mode }: MemberFormProps) {
     email: "",
     phone: "",
     address: "",
+    emergencyContacts: [
+      {
+        name: "",
+        relationship: "",
+        phone: "",
+      },
+    ],
+    insurance: {
+      company: "",
+      policyNumber: "",
+      coverages: "",
+      validFrom: "",
+      validTo: "",
+    },
   };
 
   const form = useForm({
@@ -69,17 +99,7 @@ export function MemberForm({ memberId, mode }: MemberFormProps) {
     onSubmit: async ({ value }) => {
       try {
         if (mode === "create") {
-          await createMember({
-            ...value,
-            emergencyContacts: [], // Default empty array for now
-            insurance: {
-              company: "",
-              policyNumber: "",
-              coverages: "",
-              validFrom: "",
-              validTo: "",
-            },
-          });
+          await createMember(value);
         } else if (memberId) {
           await updateMember({
             id: memberId,
@@ -112,6 +132,22 @@ export function MemberForm({ memberId, mode }: MemberFormProps) {
       form.setFieldValue("email", existingMember.email || "");
       form.setFieldValue("phone", existingMember.phone || "");
       form.setFieldValue("address", existingMember.address || "");
+      form.setFieldValue(
+        "emergencyContacts",
+        existingMember.emergencyContacts || [
+          { name: "", relationship: "", phone: "" },
+        ],
+      );
+      form.setFieldValue(
+        "insurance",
+        existingMember.insurance || {
+          company: "",
+          policyNumber: "",
+          coverages: "",
+          validFrom: "",
+          validTo: "",
+        },
+      );
     }
   }, [existingMember, mode, form]);
 
@@ -657,6 +693,276 @@ export function MemberForm({ memberId, mode }: MemberFormProps) {
                         {field.state.meta.errors[0]?.toString()}
                       </p>
                     )}
+                  </div>
+                )}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Emergency Contacts Section */}
+        <div className="rounded-lg border border-gray-200 bg-white p-6">
+          <h2 className="mb-6 text-xl font-semibold text-gray-900">
+            Contactos de Emergencia
+          </h2>
+          <form.Field
+            name="emergencyContacts"
+            mode="array"
+            children={(field) => (
+              <div className="space-y-4">
+                {field.state.value.map((_, i) => (
+                  <div
+                    key={i}
+                    className="rounded-lg border border-gray-200 bg-gray-50 p-4"
+                  >
+                    <div className="mb-4 flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-gray-900">
+                        Contacto {i + 1}
+                      </h3>
+                      {field.state.value.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => field.removeValue(i)}
+                          className="text-sm font-medium text-red-600 hover:text-red-800"
+                        >
+                          Eliminar
+                        </button>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                      <form.Field
+                        name={`emergencyContacts[${i}].name`}
+                        validators={{
+                          onChange: ({ value }) => {
+                            const result = z
+                              .string()
+                              .min(1, "Nombre es requerido")
+                              .safeParse(value);
+                            return result.success
+                              ? undefined
+                              : result.error.issues[0]?.message;
+                          },
+                        }}
+                        children={(subField) => (
+                          <div>
+                            <label className="mb-2 block text-sm font-medium text-gray-700">
+                              Nombre Completo
+                            </label>
+                            <input
+                              type="text"
+                              value={subField.state.value}
+                              onBlur={subField.handleBlur}
+                              onChange={(e) =>
+                                subField.handleChange(e.target.value)
+                              }
+                              className="focus:border-brand focus:ring-brand w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1"
+                              placeholder="Nombre del contacto"
+                            />
+                            {subField.state.meta.errors.length > 0 && (
+                              <p className="mt-1 text-sm text-red-600">
+                                {subField.state.meta.errors[0]?.toString()}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      />
+
+                      <form.Field
+                        name={`emergencyContacts[${i}].relationship`}
+                        validators={{
+                          onChange: ({ value }) => {
+                            const result = z
+                              .string()
+                              .min(1, "Relación es requerida")
+                              .safeParse(value);
+                            return result.success
+                              ? undefined
+                              : result.error.issues[0]?.message;
+                          },
+                        }}
+                        children={(subField) => (
+                          <div>
+                            <label className="mb-2 block text-sm font-medium text-gray-700">
+                              Relación
+                            </label>
+                            <select
+                              value={subField.state.value}
+                              onBlur={subField.handleBlur}
+                              onChange={(e) =>
+                                subField.handleChange(e.target.value)
+                              }
+                              className="focus:border-brand focus:ring-brand w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1"
+                            >
+                              <option value="">Selecciona la relación</option>
+                              <option value="Padre">Padre</option>
+                              <option value="Madre">Madre</option>
+                              <option value="Hermano/a">Hermano/a</option>
+                              <option value="Esposo/a">Esposo/a</option>
+                              <option value="Hijo/a">Hijo/a</option>
+                              <option value="Abuelo/a">Abuelo/a</option>
+                              <option value="Tío/a">Tío/a</option>
+                              <option value="Primo/a">Primo/a</option>
+                              <option value="Amigo/a">Amigo/a</option>
+                              <option value="Otro">Otro</option>
+                            </select>
+                            {subField.state.meta.errors.length > 0 && (
+                              <p className="mt-1 text-sm text-red-600">
+                                {subField.state.meta.errors[0]?.toString()}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      />
+
+                      <form.Field
+                        name={`emergencyContacts[${i}].phone`}
+                        validators={{
+                          onChange: ({ value }) => {
+                            const result = z
+                              .string()
+                              .min(1, "Teléfono es requerido")
+                              .safeParse(value);
+                            return result.success
+                              ? undefined
+                              : result.error.issues[0]?.message;
+                          },
+                        }}
+                        children={(subField) => (
+                          <div>
+                            <label className="mb-2 block text-sm font-medium text-gray-700">
+                              Teléfono
+                            </label>
+                            <input
+                              type="tel"
+                              value={subField.state.value}
+                              onBlur={subField.handleBlur}
+                              onChange={(e) =>
+                                subField.handleChange(e.target.value)
+                              }
+                              className="focus:border-brand focus:ring-brand w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1"
+                              placeholder="+1 (555) 123-4567"
+                            />
+                            {subField.state.meta.errors.length > 0 && (
+                              <p className="mt-1 text-sm text-red-600">
+                                {subField.state.meta.errors[0]?.toString()}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      />
+                    </div>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    field.pushValue({ name: "", relationship: "", phone: "" })
+                  }
+                  className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-md px-4 py-2 text-sm font-medium transition-colors"
+                >
+                  Agregar Contacto de Emergencia
+                </button>
+              </div>
+            )}
+          />
+        </div>
+
+        {/* Insurance Information Section */}
+        <div className="rounded-lg border border-gray-200 bg-white p-6">
+          <h2 className="mb-6 text-xl font-semibold text-gray-900">
+            Información del Seguro
+          </h2>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <form.Field
+              name="insurance.company"
+              children={(field) => (
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                    Compañía de Seguros
+                  </label>
+                  <input
+                    type="text"
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    className="focus:border-brand focus:ring-brand w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1"
+                    placeholder="Nombre de la aseguradora"
+                  />
+                </div>
+              )}
+            />
+
+            <form.Field
+              name="insurance.policyNumber"
+              children={(field) => (
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                    Número de Póliza
+                  </label>
+                  <input
+                    type="text"
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    className="focus:border-brand focus:ring-brand w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1"
+                    placeholder="Número de la póliza"
+                  />
+                </div>
+              )}
+            />
+
+            <form.Field
+              name="insurance.validFrom"
+              children={(field) => (
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                    Vigencia Desde
+                  </label>
+                  <input
+                    type="date"
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    className="focus:border-brand focus:ring-brand w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1"
+                  />
+                </div>
+              )}
+            />
+
+            <form.Field
+              name="insurance.validTo"
+              children={(field) => (
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                    Vigencia Hasta
+                  </label>
+                  <input
+                    type="date"
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    className="focus:border-brand focus:ring-brand w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1"
+                  />
+                </div>
+              )}
+            />
+
+            <div className="sm:col-span-2">
+              <form.Field
+                name="insurance.coverages"
+                children={(field) => (
+                  <div>
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                      Coberturas
+                    </label>
+                    <textarea
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      rows={3}
+                      className="focus:border-brand focus:ring-brand w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1"
+                      placeholder="Describe las coberturas del seguro"
+                    />
                   </div>
                 )}
               />
